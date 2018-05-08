@@ -1,0 +1,233 @@
+.position-list-box {
+    position: relative;
+    width: 1366px;
+    .list-line {
+        position: absolute;
+        top: 62px;
+        left: 0;
+        width: 1366px;
+        height: 1px;
+        background: #e5e5e5;
+    }
+    .position-title-box {
+        position: relative;
+        width: 100%;
+        padding: 0 6%;
+    }
+    .tabs-box {
+        .ant-tabs-bar {
+            height: 100%;
+            margin: 0;
+            border-bottom: 0;
+        }
+        .ant-tabs-tab {
+            margin-right: 43px;
+            padding: 12px 0;
+            font-family: PingFangSC-Light;
+            font-size: 16px;
+            color: #bbbbbb;
+            -webkit-user-select: none;
+        }
+        .ant-tabs-tab-active {
+            color: #6c6c6c;
+        }
+        .ant-tabs-ink-bar {
+            bottom: -1px;
+            height: 4px;
+            background: #18bae2;
+        }
+        .ant-tabs-nav-container {
+            height: 100%;
+        }
+        .ant-tabs-nav-wrap {
+            height: 100%;
+        }
+        .ant-tabs-nav-scroll {
+            overflow: initial;
+            height: 100%;
+        }
+        .ant-tabs-nav {
+            height: 100%;
+            line-height: 40px;
+        }
+    }
+    .pagenum-show-box {
+        position: absolute;
+        top: 0;
+        right: 6%;
+        height: 64px;
+        line-height: 84px;
+        font-family: PingFangSC-Light;
+        color: #b2b2b2;
+        span {
+            padding: 0 8px;
+            color: #18bae2;
+        }
+    }
+    .position-content-box {
+        width: 100%;
+        padding: 35px 0;
+        text-align: center;
+    }
+    .position-content-list {
+        width: 1200px;
+        height: 143px;
+        margin-bottom: 13px;
+        padding: 32px 32px 25px;
+        background: #f9f9f9;
+        border: 1px solid #f2f2f2;
+        .left-box {
+            float: left;
+            width: 558px;
+            .post-name {
+                overflow: hidden;
+                text-overflow: ellipsis;
+                word-break: keep-all;
+                white-space: nowrap;
+                width: 100%;
+                line-height: 18px;
+                font-size: 18px;
+                font-family: PingFangSC-Light;
+                color: #000000;
+                i {
+                    display: inline-block;
+                    width: 45px;
+                    height: 26px;
+                    background: url("../../images/icons/new-icon.png") 0 0 no-repeat;
+                    background-size: contain;
+                    vertical-align: middle;
+                }
+            }
+            .post-detail {
+                width: 100%;
+                line-height: 18px;
+                padding: 7px 0 16px;
+                font-size: 18px;
+            }
+            .salary {
+                display: inline-block;
+                padding-right: 3px;
+                font-weight: bold;
+                vertical-align: middle;
+                color: #18bae2;
+            }
+            .post-mes {
+                display: inline-block;
+                vertical-align: middle;
+                font-weight: bold;
+                font-family: PingFangSC-Light;
+                span {
+                    padding: 0 11px;
+                    font-size: 14px;
+                    color: #555555;
+                    border-right: 1px solid #555555;
+                }
+                span:last-child {
+                    border-right: 0;
+                }
+            }
+            .post-time {
+                line-height: 14px;
+                font-family: PingFangSC-Light;
+                font-size: 14px;
+            }
+            span {
+                color: #858585;
+            }
+            .release-time {
+                padding-right: 35px;
+            }
+        }
+        .center-box {
+            float: left;
+            height: 60px;
+            margin: 10px 0 4px;
+            padding: 0 19px;
+            border-left: 1px solid #e0e0e0;
+            border-right: 1px solid #e0e0e0;
+            li {
+                display: inline-block;
+                text-align: center;
+                strong {
+                    display: inline-block;
+                    width: 100%;
+                    padding-bottom: 15px;
+                    line-height: 24px;
+                    font-size: 24px;
+                    font-weight: bold;
+                    color: #18bae2;
+                }
+                span {
+                    display: inline-block;
+                    width: 100%;
+                    line-height: 14px;
+                    font-family: PingFangSC-Light;
+                    font-size: 14px;
+                    color: #7c7c7c;
+                }
+            }
+        }
+        .right-box {
+            float: left;
+            padding-left: 19px;
+        }
+        .bussiness-card {
+            display: inline-block;
+            vertical-align: middle;
+            .name {
+                width: 100%;
+                line-height: 16px;
+                span:first-child {
+                    padding-right: 10px;
+                    font-family: PingFangSC-Light;
+                    font-weight: bold;
+                    font-size: 16px;
+                    color: #323232;
+                }
+                span:last-child {
+                    font-size: 12px;
+                    font-family: PingFangSC-Light;
+                    font-weight: bold;
+                    color: #18bae2;
+                }
+            }
+            .tel, .mail {
+                margin: 13px 0 11px;
+                padding-left: 18px;
+                font-family: PingFangSC-Light;
+                font-size: 12px;
+                text-align: left;
+                background: url(../../images/icons/tel_icon.png) 0 center no-repeat;
+                background-size: 12px 12px;
+                color: #7c7c7c;
+            }
+            .mail {
+                margin: 0;
+                background: url(../../images/icons/mail_icon.png) 0 center no-repeat;
+                background-size: 12px 12px;
+            }
+        }
+        .recommend-resume {
+            position: relative;
+            display: inline-block;
+            width: 48px;
+            height: 77px;
+            margin-left: 46px;
+            background: url(../../images/icons/recommend-icon.png) 0 0 no-repeat;
+            background-size: 48px 57px;
+            vertical-align: middle;
+            cursor: pointer;
+            span {
+                display: inline-block;
+                font-family: PingFangSC-Light;
+                font-size: 12px;
+                color: #18bae2;
+            }
+            i {
+                position: absolute;
+                bottom: 0;
+                font-style: normal;
+            }
+        }
+    }
+}

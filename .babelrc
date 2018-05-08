@@ -1,0 +1,32 @@
+{
+    "presets": [
+        "env",
+        "react"
+    ],
+    "plugins": [
+        "react-hot-loader/babel",
+        "transform-runtime",
+        [
+            "import", 
+            { 
+                "libraryName": "antd", 
+                "style": true 
+            }
+        ],
+        [
+            "transform-class-properties", 
+            { 
+                "spec": true 
+            }
+        ],
+        [
+            "transform-object-rest-spread"
+        ],
+        [
+            "transform-es2015-classes",
+            {
+                "loose": true
+            }
+        ]
+    ]
+}
