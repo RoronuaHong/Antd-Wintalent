@@ -1,25 +1,21 @@
-import React from "react";
-import { Select } from "antd";
+import React, { Component } from "react";
 
-const { Option } = Select;
+class SearchSelect extends Component {
+    //设置关键字
+    handles = e => {
+        this.props.addSearchData("keyWord", e.target.value, true);
+    }
 
-const SearchSelect = ({ handleChange, handleFocus, handleBlur }) => (
-    <Select
-        className="searchSelect"
-        showSearch
-        placeholder="输入职位名称及关键字"
-        optionFilterProp="children"
-        onChange={ handleChange }
-        onFocus={ handleFocus }
-        onBlur={ handleBlur }
-        filterOption={(input, option) => 
-            option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-        }
-    >
-        <Option value="jack">Jack</Option>
-        <Option value="lucy">Lucy</Option>
-        <Option value="tom">Tom</Option>
-    </Select>
-);
+    render() {
+        return(
+            <input
+                ref="myInput"
+                className="searchSelect"
+                placeholder="输入职位名称及关键字"
+                onChange={ this.handles }
+            />
+        );
+    }
+}
 
 export default SearchSelect;

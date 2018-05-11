@@ -55,7 +55,7 @@ class RightBox extends Component {
                 <Dropdown overlay={ this.props.menu }>
                     <a className="ant-dropdown-link" href="#">
                         { 
-                            this.props.getSubStringSum("wangjiayuan@qq.com", 12)
+                            this.props.getSubStringSum(this.props.getNames, 12)
                         }
                         <Icon type="down" />
                     </a>

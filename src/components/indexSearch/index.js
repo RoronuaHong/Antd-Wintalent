@@ -8,26 +8,7 @@ import deleteIcon from "../../images/icons/delete_icon.png";
 
 class IndexSearch extends Component {
     state = {
-        selItem: [
-            {
-                name: "上海市"
-            },
-            {
-                name: "人力资源管理人员"
-            },
-            {
-                name: "高级市场专员"
-            },
-            {
-                name: "10k～15k"
-            },
-            {
-                name: "15k～20k"
-            },
-            {
-                name: "20k～25k"
-            }
-        ]
+        selItem: []
     }
 
     handleChange = value => {
@@ -40,6 +21,36 @@ class IndexSearch extends Component {
 
     handleFocus = () => {
         console.log('focus');
+    }
+
+    addSetItem = (defaultKey, key, itemCollection) => {
+        let oldItem = this.state.selItem,
+            boolItem = true,
+            showItem = this.props.searchArray[defaultKey];
+
+        boolItem = oldItem.some(item => item.name === itemCollection.name);
+
+        if(!boolItem) {
+            this.props.addSearchData(showItem, itemCollection.code, false);
+
+            if(defaultKey == 8) {
+                if(!this.props.states.releaseTimeCode) {
+                    this.setState({
+                        selItem: [
+                            ...oldItem,
+                            itemCollection
+                        ]
+                    });
+                }
+            } else {
+                this.setState({
+                    selItem: [
+                        ...oldItem,
+                        itemCollection
+                    ]
+                });
+            }
+        }
     }
 
     deleteSingleItem = index => {
@@ -55,6 +66,12 @@ class IndexSearch extends Component {
         this.setState({
             selItem: []
         });
+
+        this.props.addSearchData("postionTabIndex", this.props.states.postionTabIndex, false);
+
+        this.props.searchArray.map((item, index) => {
+            item && this.props.addSearchData(item, "", true);
+        });
     }
 
     render() {
@@ -64,21 +81,26 @@ class IndexSearch extends Component {
             <div className="index-search-box clearfix">
                 <div className="clearfix">
                     {
-                        searchArr.map((item, index) => {
-                            this.props.postListResult(index, allArr);
-                            
+                        searchArr.map((item, index) => {            
                             return(
-                                <React.Fragment key={index}>
+                                <React.Fragment key={ index }>
                                     {
                                         Object.keys(item) == 9 || Object.keys(item) == 10 ?
                                             <SearchSelect
-                                                handleChange={ this.handleChange }
+                                                defaultKey={ Object.keys(item) }
+                                                addSearchData={ this.props.addSearchData }
+                                                postListArr={ this.props.postListArr }
+                                                addSetItem={ this.addSetItem }
                                                 handleBlur={ this.handleBlur }
                                                 handleFocus={ this.handleFocus }
                                             />
                                             :
                                             <SelectComponent
+                                                states={ this.props.states }
+                                                defaultKey={ Object.keys(item) }
                                                 defaultValue={ Object.values(item) }
+                                                postListArr={ this.props.postListArr }
+                                                addSetItem={ this.addSetItem }
                                             />
                                     }
                                 </React.Fragment>
@@ -87,7 +109,19 @@ class IndexSearch extends Component {
                     }
                     <button
                         className="search-btn"
-                        onClick={ () => console.log(1) }
+                        onClick={() => 
+                            this.props.positionResultAjax(
+                                this.props.states.postionTabIndex,
+                                this.props.states.keyWord,
+                                this.props.states.positionName,
+                                this.props.states.workPlace,
+                                this.props.states.positionType,
+                                this.props.states.workType,
+                                this.props.states.releaseTimeCode,
+                                this.props.states.salaryType,
+                                this.props.states.orgCode
+                            )
+                        }
                     >
                         搜&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;索
                     </button>

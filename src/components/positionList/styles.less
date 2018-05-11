@@ -66,6 +66,7 @@
     }
     .position-content-box {
         width: 100%;
+        min-height: 400px;
         padding: 35px 0;
         text-align: center;
     }
@@ -88,6 +89,7 @@
                 line-height: 18px;
                 font-size: 18px;
                 font-family: PingFangSC-Light;
+                text-align: left;
                 color: #000000;
                 i {
                     display: inline-block;
@@ -103,6 +105,7 @@
                 line-height: 18px;
                 padding: 7px 0 16px;
                 font-size: 18px;
+                text-align: left;
             }
             .salary {
                 display: inline-block;
@@ -130,6 +133,7 @@
                 line-height: 14px;
                 font-family: PingFangSC-Light;
                 font-size: 14px;
+                text-align: left;
             }
             span {
                 color: #858585;
@@ -168,15 +172,17 @@
             }
         }
         .right-box {
-            float: left;
             padding-left: 19px;
         }
         .bussiness-card {
+            float: left;
+            padding-left: 18px;
             display: inline-block;
             vertical-align: middle;
             .name {
                 width: 100%;
                 line-height: 16px;
+                text-align: left;
                 span:first-child {
                     padding-right: 10px;
                     font-family: PingFangSC-Light;
@@ -208,6 +214,7 @@
             }
         }
         .recommend-resume {
+            float: right;
             position: relative;
             display: inline-block;
             width: 48px;
@@ -215,6 +222,7 @@
             margin-left: 46px;
             background: url(../../images/icons/recommend-icon.png) 0 0 no-repeat;
             background-size: 48px 57px;
+            text-align: left;
             vertical-align: middle;
             cursor: pointer;
             span {
@@ -230,4 +238,7 @@
             }
         }
     }
+}
+.position-list-spin {
+    line-height: 400px;
 }

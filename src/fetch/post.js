@@ -3,14 +3,21 @@ import "es6-promise";
 
 const obj2params = (obj) => {
     let result = "",
-        item;
+        item,
+        resultObj;
 
     for(item in obj) {
-        result += "&" + item + "=" + encodeURIComponent(obj[item]);
-    }
+        if(Array.isArray(obj[item]) || typeof obj[item] == "object") {
+            resultObj = obj[item].toString();
+        } else {
+            resultObj = encodeURIComponent(obj[item]);
+        }
 
+        result += "&" + item + "=" + resultObj;
+    }
+    
     if(result) {
-        return result.slice(1);
+        result = result.slice(1);
     }
 
     return result;

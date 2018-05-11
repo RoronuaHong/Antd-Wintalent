@@ -14,7 +14,7 @@ import headerNotify from "../../images/icons/notify_icon.png";
 import headerChangePwd from "../../images/icons/changepwd_icon.png";
 import headerSignout from "../../images/icons/signout_icon.png";
 
-const IndexHeader = () => {   
+const IndexHeader = ({ getNames }) => {   
     /* 下拉内容框 */
     const menu = (
         <Menu>
@@ -41,6 +41,7 @@ const IndexHeader = () => {
             />
             <MenuComponent />
             <RightBox 
+                getNames={ getNames }
                 headerNotify={ headerNotify }
                 menu={ menu }
                 getSubStringSum={ getSubStringSum }

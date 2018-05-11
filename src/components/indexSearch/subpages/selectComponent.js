@@ -3,90 +3,42 @@ import { Select, Menu, Dropdown, Icon } from "antd";
 
 const { Option } = Select;
 
-const SelectComponent = ({ defaultValue }) => {
+const SelectComponent = ({ 
+    states, 
+    addSetItem, 
+    defaultKey, 
+    defaultValue, 
+    postListArr, 
+    handleSetItem,
+    searchTypeArrs 
+}) => {
+    const onClicks = ({ key }) => {
+        const showName = postListArr[defaultKey][key] && postListArr[defaultKey][key].showName;
+        const showCode = postListArr[defaultKey][key] && postListArr[defaultKey][key].showCode;
+
+        addSetItem(defaultKey, key, { name: showName, code: showCode });
+    }
+
     const menu = (
-        <Menu>
-            <Menu.Item 
-                key="0"
-            >
-                北京
-            </Menu.Item>
-            <Menu.Item key="1">
-                上海
-                </Menu.Item>
-            <Menu.Item key="2">
-                天津
-                </Menu.Item>
-            <Menu.Item key="3">
-                北京
-                </Menu.Item>
-            <Menu.Item key="4">
-                上海
-                </Menu.Item>
-            <Menu.Item key="5">
-                天津
-                </Menu.Item>
-            <Menu.Item key="6">
-                北京
-                </Menu.Item>
-            <Menu.Item key="7">
-                上海
-                </Menu.Item>
-            <Menu.Item key="8">
-                天津
-                </Menu.Item>
-            <Menu.Item key="9">
-                北京
-                </Menu.Item>
-            <Menu.Item key="10">
-                上海
-                </Menu.Item>
-            <Menu.Item key="11">
-                天津
-            </Menu.Item>
-            <Menu.Item key="01">
-                北京
-                </Menu.Item>
-            <Menu.Item key="211">
-                上海
-                </Menu.Item>
-            <Menu.Item key="21">
-                天津
-                </Menu.Item>
-            <Menu.Item key="31">
-                北京
-                </Menu.Item>
-            <Menu.Item key="41">
-                上海
-                </Menu.Item>
-            <Menu.Item key="51">
-                天津
-                </Menu.Item>
-            <Menu.Item key="61">
-                北京
-                </Menu.Item>
-            <Menu.Item key="71">
-                上海
-                </Menu.Item>
-            <Menu.Item key="81">
-                天津
-                </Menu.Item>
-            <Menu.Item key="91">
-                北京
-                </Menu.Item>
-            <Menu.Item key="101">
-                上海
-                </Menu.Item>
-            <Menu.Item key="111">
-                天津
-            </Menu.Item>
+        <Menu 
+            onClick={ onClicks }
+        >
+            {
+                postListArr[defaultKey].map((item, index) => (
+                    <Menu.Item 
+                        key={ index }
+                    >
+                        { item.showName }
+                    </Menu.Item>
+                ))
+            }
         </Menu>
     );
 
     return (
         <Dropdown
             overlay={ menu } 
-            trigger={['click']}
+            trigger={['click']} 
         >
             <span className="select-box">
                 { defaultValue }

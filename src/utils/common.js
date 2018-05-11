@@ -6,7 +6,11 @@ export const getSubStringSum = (str = "", num = 1) => {
         str = str.toString().trim();
     }
 
-    newStr = str.trim().substring(0, num) + "...";
+    if (str.trim().length > num) {
+        newStr = str.trim().substring(0, num) + "...";
+    } else {
+        newStr = str.trim().substring(0, num);
+    }
 
     return newStr;
 }
