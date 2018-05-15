@@ -16,12 +16,17 @@ class positionTitle extends Component {
             this.props.states.workType,
             this.props.states.releaseTimeCode,
             this.props.states.salaryType,
-            this.props.states.orgCode
+            this.props.states.orgCode,
+            this.props.states.rowSize,
+            this.props.states.currentPage
         );
     }
 
     render() {
-        const children = this.props.children;
+        const {
+            children,
+            positionListArr
+         } = this.props;
         
         return (
             <div className="position-title-box">
@@ -37,7 +42,7 @@ class positionTitle extends Component {
                                 <TabPane 
                                     tab={ item.props.name } 
                                     key={ index }
-                                    positionListArr={ this.props.positionListArr }
+                                    positionListArr={ positionListArr }
                                     forceRender={ false }
                                 >
                                     { item }
@@ -47,7 +52,7 @@ class positionTitle extends Component {
                     }
                 </Tabs>
                 <div className="pagenum-show-box">
-                    共<span>50</span>页，每页<span>100</span>条数据
+                    共<span>{ this.props.states.totalPage }</span>页，每页<span>{ this.props.states.rowSize }</span>条数据
                 </div>
             </div>
         );

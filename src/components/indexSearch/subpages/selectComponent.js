@@ -15,7 +15,6 @@ const SelectComponent = ({
     const onClicks = ({ key }) => {
         const showName = postListArr[defaultKey][key] && postListArr[defaultKey][key].showName;
         const showCode = postListArr[defaultKey][key] && postListArr[defaultKey][key].showCode;
-
         addSetItem(defaultKey, key, { name: showName, code: showCode });
     }
 

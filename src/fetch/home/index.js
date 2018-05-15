@@ -1,8 +1,16 @@
+import { get } from "../get";
 import { post } from "../post";
 
-/* 首页登陆判断 */
+/* 首页登陆接口 */
 export const getLogin = data => {
     const result = post("/wt/runner/hunter/index/login", data);
+
+    return result;
+}
+
+/* 退出登录接口 */
+export const getLogout = () => {
+    const result = get("/wt/runner/hunter/auth/index/logout");
 
     return result;
 }

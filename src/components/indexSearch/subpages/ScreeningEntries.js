@@ -17,7 +17,7 @@ const ScreeningEntries = ({
                     <span className="tags">
                         { item.name }
                         <strong
-                            onClick={ () => deleteSingleItem(index) }
+                            onClick={ () => deleteSingleItem(item, index) }
                         >
                             <img src={ deleteIcon } alt="暂无图片" />
                         </strong>

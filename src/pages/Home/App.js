@@ -10,6 +10,7 @@ import IndexFooter from "../../components/indexFooter";
 import {
     getName,
     getLogin,
+    getLogout,
     getSearchComponent
 } from "../../fetch/home";
 
@@ -21,7 +22,28 @@ class App extends Component {
         getNames: ""
     }
 
+    changeJumperPage = () => {
+        const jumperDOM = document.querySelector(".ant-pagination-options-quick-jumper");
+
+        //使用正则进行匹配
+        jumperDOM && (jumperDOM.firstChild.data = "跳至");
+        jumperDOM && (jumperDOM.lastChild.data = "页");
+    }
+
+    /* 退出登录 */
+    handleLogout() {
+        const logoutResult = getLogout();
+
+        logoutResult
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+            });
+    }
+
     componentDidMount() {
+        this.changeJumperPage();
+
         /* 获取用户信息 */
         const getNameResult = getName();
 
@@ -52,6 +74,7 @@ class App extends Component {
                 {/* <ShowMessage /> */}
                 <IndexHeader 
                     getNames={ this.state.getNames }
+                    handleLogout={ this.handleLogout }
                 />
                 { this.props.children }
             </div>

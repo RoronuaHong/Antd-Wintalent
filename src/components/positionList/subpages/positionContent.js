@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Spin } from "antd";
 
-const positionContent = ({ isLoading, states, hovers, positionListArr, onMouseEnter, onMouseLeave }) => {
+const positionContent = ({ isLoading, positionListArr }) => {
     return (
         <div className="position-content-box">
             {
@@ -82,11 +82,7 @@ const positionContent = ({ isLoading, states, hovers, positionListArr, onMouseEn
                                                     { item.recruiterEmail || "暂无" }
                                                 </li>
                                             </ul>
-                                            <div
-                                                className="recommend-resume"
-                                                onMouseEnter={ onMouseEnter }
-                                                onMouseLeave={ onMouseLeave }
-                                            >
+                                            <div className="recommend-resume">
                                                 <span>
                                                     <i>
                                                         推荐简历

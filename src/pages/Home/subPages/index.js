@@ -23,6 +23,9 @@ class Index extends Component {
         releaseTimeCode: "",
         salaryType: [],
         orgCode: [],
+        rowSize: 10,
+        totalPage: "",
+        totalData: "",
         currentPage: 1,
         isLoading: true
     }
@@ -50,6 +53,19 @@ class Index extends Component {
         }
     }
 
+    /* 搜索栏删除数据 */
+    delSearchData = item => {
+        const showItem = item.field;
+        let currentItem = this.state[showItem];
+        
+        //过滤
+        currentItem = currentItem.filter(t => t !== item.code);
+
+        this.setState({
+            [showItem]: currentItem
+        });
+    }
+
     /* 职位列表接口 */
     positionResultAjax = (
         postionTabIndex = 0,
@@ -60,7 +76,9 @@ class Index extends Component {
         workType = "",
         releaseTimeCode = "",
         salaryType = "",
-        orgCode = ""
+        orgCode = "",
+        rowSize = 10,
+        currentPage = 1
     ) => {
         this.judgeLoading(true);
         const positionResult = getPositionList({
@@ -72,14 +90,19 @@ class Index extends Component {
             "positionCondition.workType": workType,
             "positionCondition.releaseTimeCode": releaseTimeCode,
             "positionCondition.salaryType": salaryType,
-            "positionCondition.orgCode": orgCode
+            "positionCondition.orgCode": orgCode,
+            "positionCondition.rowSize": rowSize,
+            "positionCondition.currentPage": currentPage
         });
 
         positionResult
             .then(response => response.json())
             .then(data => {
                 this.setState({
-                    positionListArr: data.data,
+                    positionListArr: data.data.rowList,
+                    totalPage: data.data.pageCount,
+                    totalData: data.data.rowCount,
+                    rowSize: data.data.rowSize,
                     isLoading: false
                 });
             });
@@ -87,7 +110,7 @@ class Index extends Component {
 
     componentDidMount() {
         /* 职位搜索组件接口 */
-        const searchArrs = ["", "工作地点", "机构", "职位类型", "工作类型", "", "子公司", "", "职位发布时间", "关键字搜索", "职位名称", "薪资范围"];
+        const searchArrs = ["", "工作地点", "机构", "职位类型", "工作类型", "", "子公司", "", "职位发布时间", "薪资范围", "关键字搜索", "职位名称"];
         const searchTypeArrs = [
             "", 
             "workPlace", 
@@ -98,9 +121,9 @@ class Index extends Component {
             "orgCode", 
             "", 
             "releaseTimeCode", 
+            "salaryType", 
             "keyWord", 
-            "positionName", 
-            "salaryType"
+            "positionName"
         ];
 
         const searchResult = getSearchComponent({
@@ -146,7 +169,9 @@ class Index extends Component {
             this.state.workType,
             this.state.releaseTimeCode,
             this.state.salaryType,
-            this.state.orgCode
+            this.state.orgCode,
+            this.state.rowSize,
+            this.state.currentPage
         );
     }
 
@@ -155,6 +180,7 @@ class Index extends Component {
             <div className="hunter-index-box">
                 <IndexSearch 
                     addSearchData={ this.addSearchData }
+                    delSearchData={ this.delSearchData }
                     searchArray={ this.state.searchArray }
                     searchArr={ this.state.searchArr }
                     postListArr={ this.state.postListArr }
@@ -169,7 +195,10 @@ class Index extends Component {
                     positionResultAjax={ this.positionResultAjax }
                     states={ this.state }
                 />
-                <IndexFooter />
+                <IndexFooter 
+                    positionResultAjax={ this.positionResultAjax }
+                    states={ this.state }
+                />
             </div>
         );
     }

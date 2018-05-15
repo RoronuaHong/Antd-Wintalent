@@ -47,8 +47,3 @@ textarea{overflow:auto;resize:vertical}
 .am-navbar-dark {
     color: #333;
 }
-body, html {
-    min-width: 1200px;
-    /* overflow-x: hidden !important; */
-    font-family: PingFangSC-Regular;
-}

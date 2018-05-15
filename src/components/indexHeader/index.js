@@ -14,7 +14,7 @@ import headerNotify from "../../images/icons/notify_icon.png";
 import headerChangePwd from "../../images/icons/changepwd_icon.png";
 import headerSignout from "../../images/icons/signout_icon.png";
 
-const IndexHeader = ({ getNames }) => {   
+const IndexHeader = ({ getNames, handleLogout }) => {   
     /* 下拉内容框 */
     const menu = (
         <Menu>
@@ -25,7 +25,11 @@ const IndexHeader = ({ getNames }) => {
                 </a>
             </Menu.Item>
             <Menu.Item>
-                <a target="_blank" rel="noopener noreferrer" href="http://www.taobao.com/">
+                <a 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    onClick={ handleLogout }
+                >
                     <img className="munu-item-img" src={ headerSignout } alt="暂无icon"/>
                     <span className="munu-item">退出</span>
                 </a>

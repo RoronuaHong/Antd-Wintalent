@@ -14,3 +14,9 @@ export const getSubStringSum = (str = "", num = 1) => {
 
     return newStr;
 }
+
+/* 空格转义 */
+export const setNewHtml = (str) => {
+    str = str ? str.replace(/\n/g, "<br>") : "暂无";
+    return { __html: "<p>" + str + "</p>" };
+}
