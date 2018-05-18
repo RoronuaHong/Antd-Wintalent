@@ -47,3 +47,6 @@ textarea{overflow:auto;resize:vertical}
 .am-navbar-dark {
     color: #333;
 }
+* {
+    box-sizing: border-box;
+}

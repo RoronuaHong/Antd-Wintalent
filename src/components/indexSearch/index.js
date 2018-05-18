@@ -71,20 +71,21 @@ class IndexSearch extends Component {
         const { searchArr, allArr } = this.props;
 
         const SearchSelectComponent = (
-            searchArr.map((item, index) => (
-                <React.Fragment key={ index }>
-                    {  
-                        //TODO: 修改Object.keys(item) == 11
-                        Object.keys(item) == 10 || Object.keys(item) == 11 &&
-                            <SearchSelect
-                                defaultKey={Object.keys(item)}
-                                addSearchData={this.props.addSearchData}
-                                postListArr={this.props.postListArr}
-                                addSetItem={this.addSetItem}
-                            />
-                        }
-                    </React.Fragment>
-                ))
+            searchArr.map((item, index) => {
+                return(
+                    <React.Fragment key={ index }>
+                        {  
+                            (Object.keys(item) == 10 || Object.keys(item) == 11) &&
+                                <SearchSelect
+                                    defaultKey={Object.keys(item)}
+                                    addSearchData={this.props.addSearchData}
+                                    postListArr={this.props.postListArr}
+                                    addSetItem={this.addSetItem}
+                                />
+                            }
+                        </React.Fragment>
+                )
+                })
         )
 
         return (
@@ -95,8 +96,7 @@ class IndexSearch extends Component {
                             return(
                                 <React.Fragment key={ index }>
                                     {
-                                        //TODO: 修改Object.keys(item) == 11
-                                        Object.keys(item) == 10 || Object.keys(item) == 9 ?
+                                        (Object.keys(item) == 10 || Object.keys(item) == 11) ?
                                             ""
                                             :
                                             <SelectComponent

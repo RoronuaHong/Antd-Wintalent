@@ -19,7 +19,8 @@ import "../../styles/home";
 
 class App extends Component {
     state = {
-        getNames: ""
+        getNames: "",
+        isShow: false
     }
 
     changeJumperPage = () => {
@@ -37,35 +38,43 @@ class App extends Component {
         logoutResult
             .then(response => response.json())
             .then(data => {
-                console.log(data);
+                if(data.state == 200) {
+                    window.location.href = "/signin.html";
+                }
             });
+    }
+
+    componentWillMount() {
+        // /* 首页登陆 */
+        // const loginResult = getLogin({
+        //     "userName": "xfl_4",
+        //     "password": "1"
+        // });
+
+        // loginResult
+        //     .then(res => res.json())
+        //     .then(data => {
+        //         if (data.state == 200) {
+        //             this.setState({
+        //                 isShow: true
+        //             });
+        //         }
+        //         if (data.state == 500) {
+        //             window.location.href = "/signin.html";
+        //         }
+        //     });
     }
 
     componentDidMount() {
         this.changeJumperPage();
 
         /* 获取用户信息 */
-        const getNameResult = getName();
-
-        getNameResult
-            .then(response => response.json())
-            .then(data => {
-                this.setState({
-                    getNames: data.data
-                });
+        const getNameResult = getName({}, data => {
+            this.setState({
+                getNames: data.data,
+                isShow: true
             });
-
-        /* 首页登陆判断 */
-        const loginResult = getLogin({
-            "userName": "xfl_4",
-            "password": "1"
         });
-
-        loginResult
-            .then(response => response.json())
-            .then(data => {
-                console.log(data);
-            });
     }
 
     render() {

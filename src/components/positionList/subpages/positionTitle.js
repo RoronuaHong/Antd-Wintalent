@@ -6,7 +6,6 @@ const { TabPane } = Tabs;
 class positionTitle extends Component {
     positionResultHandle = (index) => {
         this.props.addSearchData("postionTabIndex", index, true);
-        
         this.props.positionResultAjax(
             index,
             this.props.states.keyWord,

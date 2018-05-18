@@ -7,7 +7,8 @@ const config = {
     entry: {
         home: "./src/pages/Home/index.js",
         signin: "./src/pages/SignIn/index.js",
-        other: "./src/pages/Other/index.js"
+        other: "./src/pages/Other/index.js",
+        pwdmanage: "./src/pages/PasswordManage/index.js"
     },
     plugins: [
         new HtmlWebpackPlugin({
@@ -26,7 +27,7 @@ const config = {
             chunks: ["vendor", "signin"],
             PUBLIC_URL: PUBLIC_URL,
             hash: true,
-            title: "登录"
+            title: "猎头登录"
         }),
         new HtmlWebpackPlugin({
             template: template,
@@ -36,6 +37,15 @@ const config = {
             PUBLIC_URL: PUBLIC_URL,
             hash: true,
             title: "其他"
+        }),
+        new HtmlWebpackPlugin({
+            template: template,
+            filename: 'pwdmanage.html',
+            hash: true,
+            chunks: ["vendor", "pwdmanage"],
+            PUBLIC_URL: PUBLIC_URL,
+            hash: true,
+            title: "用户管理"
         })
     ]
 }

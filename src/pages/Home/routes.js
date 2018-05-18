@@ -5,7 +5,9 @@ import App from "./App";
 import Index from "./subPages/index";
 import Others from "./subPages/others";
 import PositionDetail from "./subPages/positiondetail";
-import ModifyPwd from "./subPages/modifypwd";
+import Recresume from "./subPages/recresume";
+import Resolve from "./subPages/resolve";
+import Recommenndrecord from "./subPages/recommenndrecord";
 import NotFound from "../NotFound";
 
 const Routes = () => (
@@ -16,7 +18,9 @@ const Routes = () => (
                 <Route exact path="/home" component={ Index } />
                 <Route path="/others" component={ Others } />
                 <Route path="/positiondetail/:id" component={ PositionDetail } />
-                <Route path="/modifypwd" component={ ModifyPwd } />
+                <Route path="/resolve" component={ Resolve } />
+                <Route path="/recresume/:id" component={ Recresume } />
+                <Route path="/recommenndrecord" component={ Recommenndrecord }/>
                 <Route path="*" component={ NotFound } />
             </Switch>
         </App>

@@ -1,0 +1,280 @@
+@main-color:#18BAE2;
+@high-light:#2DBEE4;
+@family-font: "Microsoft YaHei";
+
+.rec-record-box {
+    font-family: @family-font;
+    .ant-tabs-bar {
+        height: 69px;
+    }
+    .ant-tabs-nav {
+        padding-left: 50px;
+        height: 69px;
+        line-height: 52px;
+    }
+    .ant-tabs-tab {
+        font-size: 16px;
+        color: #a3a3a3;
+    }
+    .ant-tabs-ink-bar {
+        height: 4px;
+        background: @main-color;
+    }
+    .ant-tabs-tab-active {
+        color: #000000;
+    }
+    .ant-tabs-tabpane {
+        padding: 0 50px;
+    }
+    .ant-tabs-content {
+        padding-bottom: 30px;
+    }
+    .total-record {
+        float: left;
+        line-height: 35px;
+        font-size: 16px;
+        color: #757575;
+    }
+    .ant-input:placeholder {
+        color: #a3a3a3;
+    }
+    .ant-input-suffix {
+        color: #000;
+    }
+    .left-box {
+        float: left;
+        width: 100px;
+        padding-top: 40px;
+    }
+    .right-box {
+        float: left;
+        width: 995px;
+    }
+    .year-dl {
+        position: relative;
+        margin-bottom: 12px;
+        font-size: 14px;
+        dt {
+            display: inline-block;
+            width: 100px;
+            height: 36px;
+            padding-left: 10px;
+            line-height: 36px;
+            border-left: 2px solid #e5e5e5;
+            color: #757575;
+            cursor: pointer;
+        }
+        .yearsel {
+            width: 65px;
+            height: 24px;
+            line-height: 24px;
+            background: @main-color;
+            border-top-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+            border-left: 2px solid @main-color;
+            color: #fff;
+        }
+        dd {
+            span {
+                position: relative;
+                display: block;
+                width: 100%;
+                height: 40px;
+                line-height: 40px;
+                padding-left: 10px;
+                border-left: 2px solid #d1f1f9;
+                color: #a4a3a3;
+                cursor: pointer;
+            }
+            .span-sel::before {
+                position: absolute;
+                top: 18px;
+                left: -3px;
+                content: "";
+                width: 4px;
+                height: 4px;
+                background: @main-color;
+                box-shadow: 0 0 0 10px #fff;
+                border-radius: 50%;
+            }
+        }
+    }
+    .year-dl:first-child:before {
+        position: absolute;
+        top: -12px;
+        left: -5px;
+        content: "";
+        width: 12px;
+        height: 12px;
+        background: #e5e5e5;
+        border-radius: 50%;
+    }
+    .nowtime {
+        display: inline-block;
+        padding-bottom: 20px;
+        font-size: 16px;
+        color: #757575;
+    }
+    .detail-box {
+        width: 978px;
+        height: 138px;
+        margin-bottom: 12px;
+        background: #f9f9f9;
+        border: 1px solid #f2f2f2;
+        .showMessage {
+            float: right;
+            width: 135px;
+            height: 100%;
+            cursor: pointer;
+            strong {
+                position: relative;
+                display: block;
+                width: 44px;
+                height: 44px;
+                margin: 25px auto 22px;
+                border-radius: 50%;
+                background: @main-color url(../../images/icons/message-icon.png) center center no-repeat;
+                box-shadow: 0 10px 15px #d4f2f9;
+                i {
+                    position: absolute;
+                    top: 5px;
+                    right: 1px;
+                    display: inline-block;
+                    width: 6px;
+                    height: 6px;
+                    background: #ea0f0f;
+                    border-radius: 50%;
+                    box-shadow: 0 0 0 2px #fff;
+                }
+            }
+            .text {
+                display: inline-block;
+                width: 100%;
+                line-height: 12px;
+                font-size: 12px;
+                text-align: center;
+                color: @main-color;
+            }
+        }
+        .process-box {
+            float: left;
+            .title {
+                width: 100%;
+                padding: 18px 0 0 22px;
+                span {
+                    display: inline-block;
+                }
+                .name {
+                    padding-right: 6px;
+                    vertical-align: middle;
+                    font-size: 18px;
+                    color: #000000;
+                }
+                .source {
+                    margin-right: 50px;
+                    padding: 3px 8px;
+                    vertical-align: middle;
+                    font-size: 12px;
+                    color: #757575;
+                    box-shadow: 0 0 0 1px #b5b5b4;
+                    border-radius: 15px;
+                }
+                .region, .changed-time, .odd-time {
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    word-break: keep-all;
+                    white-space: nowrap;
+                    height: 20px;
+                    font-size: 14px;
+                    vertical-align: middle;
+                    color: #a4a3a3;
+                }
+                .region {
+                    width: 200px;
+                    padding-right: 20px;
+                }
+                .changed-time {
+                    width: 235px;
+                    padding-right: 20px;
+                }
+            }
+        }
+    }
+    .step-box {
+        width: 100%;
+        padding-top: 40px;
+        .ant-steps {
+            margin-left: -30px;
+        }
+        .ant-steps-item-finish .ant-steps-item-icon > .ant-steps-icon .ant-steps-icon-dot {
+            background: @main-color !important;
+        }
+        .ant-steps-dot {
+            .ant-steps-item-tail {
+                width: 120%;
+                margin: 0 0 0 46px;
+            }
+            .ant-steps-item-finish > .ant-steps-item-tail:after {
+                background: @main-color !important;
+            }
+        }
+        .ant-steps-dot .ant-steps-item-icon {
+            margin-left: 50px;
+        }
+        .ant-steps-item-finish .ant-steps-item-title, .ant-steps-item-process .ant-steps-item-title {
+            color: @main-color;
+        }
+        .ant-steps-item-process .ant-steps-item-icon > .ant-steps-icon .ant-steps-icon-dot {
+            top: -3px;
+            left: -4px;
+            width: 14px;
+            height: 14px;
+            background: #fff !important;
+            box-shadow: 0 0 0 2px @main-color;
+        }
+        .ant-steps-item-process .ant-steps-item-icon > .ant-steps-icon .ant-steps-icon-dot:before {
+            content: "";
+            position: absolute;
+            top: 3px;
+            left: 38px;
+            height: 4px;
+            border: 4px solid transparent;
+            background: transparent !important;
+            border-left-color: @main-color;
+        }
+        .ant-steps-item-process .ant-steps-item-icon > .ant-steps-icon .ant-steps-icon-dot:after {
+            position: absolute;
+            top: 3px;
+            left: 15px;
+            width: 23px;
+            height: 8px;
+            background: @main-color;
+        }
+        .ant-steps-label-vertical .ant-steps-item-content {
+            position: relative;
+            left: 20px;
+            width: auto;
+            text-align: center;
+        }
+        .ant-steps-item-process .ant-steps-item-icon {
+            height: 8px;
+        }
+        .ant-steps-item-content {
+            font-family: @family-font;
+            text-align: right;
+        }
+        .ant-steps-item-wait .ant-steps-item-icon > .ant-steps-icon .ant-steps-icon-dot {
+            background: #e5e5e5;
+        }
+        .ant-steps-item-description {
+            position: relative;
+            top: -65px;
+            font-size: 12px;
+            text-align: center;
+            color: #a4a3a3;
+        }
+    }
+    .title-box {
+        padding-bottom: 20px;
+    }
+}

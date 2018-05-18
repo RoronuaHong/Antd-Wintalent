@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Spin } from "antd";
 
-const positionContent = ({ isLoading, positionListArr }) => {
+const positionContent = ({ isLoading, positionListArr, openLink }) => {
     return (
         <div className="position-content-box">
             {
@@ -25,7 +25,7 @@ const positionContent = ({ isLoading, positionListArr }) => {
                                                     { item.postName || "暂无" }
                                                     <i
                                                         style={{
-                                                            display: "none"
+                                                            display: item.new ? "inline-block" : "none"
                                                         }}
                                                     >
                                                     </i>
@@ -82,7 +82,10 @@ const positionContent = ({ isLoading, positionListArr }) => {
                                                     { item.recruiterEmail || "暂无" }
                                                 </li>
                                             </ul>
-                                            <div className="recommend-resume">
+                                            <div 
+                                                className="recommend-resume"
+                                                onClick={ () => openLink("/positiondetail", item.postId) }
+                                            >
                                                 <span>
                                                     <i>
                                                         推荐简历

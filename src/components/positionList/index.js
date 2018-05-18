@@ -16,6 +16,7 @@ const PositionList = props => {
             >
                 <PositionContent
                     positionListArr={ props.positionListArr }
+                    openLink={ props.openLink }
                     isLoading={ props.isLoading }
                     states={ props.states }
                     name="进行中职位"

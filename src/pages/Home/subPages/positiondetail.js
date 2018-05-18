@@ -10,21 +10,29 @@ class Positiondetail extends Component {
         positionListArr: []
     }
 
+    //打开其他页面
+    openLink = (url, data) => {
+        const path = {
+            pathname: url + "/" + data,
+        }
+        this.props.history.push(path);
+    }
+
+    getPositionDetail = postId => {
+        const listResult = getList({
+            "positionCondition.postId": postId
+        }, data => {
+            this.setState({
+                positionListArr: data.data
+            });
+        });
+    }
+
     componentDidMount() {
         //获取简历详情数据
-        const posId = this.props.match.params.id;
-        
-        const listResult = getList({
-            "positionCondition.postId": posId
-        });
+        const postId = this.props.match.params.id;
 
-        listResult
-            .then(res => res.json())
-            .then(data => {
-                this.setState({
-                    positionListArr: data.data
-                })
-            });
+        this.getPositionDetail(postId);
     }
 
     render() {
@@ -35,6 +43,8 @@ class Positiondetail extends Component {
                 />
                 <PositionDetail 
                     positionListArr={ this.state.positionListArr }
+                    openLink={ this.openLink }
+                    id={ this.props.match.params.id }
                 />
             </div>
         )

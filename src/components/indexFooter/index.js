@@ -26,16 +26,16 @@ const IndexFooter = ({ states, positionResultAjax }) => {
             <div className="inner-box">
                 <Pagination 
                     showQuickJumper
-                    hideOnSinglePage={ true }
+                    defaultCurrent={ 1 }
                     total={ totals } 
                     onChange={ onChanges }
                 />
-                <span
+                {/* <span
                     className="certainJump"
                     onClick={ () => onChanges(2) }
                 >
                     确认
-                </span>
+                </span> */}
             </div>
         </div>
     )

@@ -1,7 +1,9 @@
 import { post } from "../post";
+import { verifyIsLogin } from "../verifyislogin";
 
-export const getList = data => {
-    const result = post("/wt/runner/hunter/auth/position/detail", data);
+export const getList = (data, fn, error) => {
+    verifyIsLogin(post, "/wt/runner/hunter/auth/position/detail", data, fn, error);
+    // const result = post("/wt/runner/hunter/auth/position/detail", data);
 
-    return result;
+    // return result;
 }

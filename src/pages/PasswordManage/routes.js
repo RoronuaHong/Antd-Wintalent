@@ -1,0 +1,21 @@
+import React, { Component } from "react";
+import { render } from "react-dom";
+import { HashRouter as Router, Route, Switch, hasHistory } from "react-router-dom";
+import App from "./App";
+import Index from "./subPages/index";
+import NotFound from "../NotFound";
+import ModifyPwd from "./subPages/modifypwd";
+
+const Routes = () => (
+    <Router>
+        <App>
+            <Switch>
+                <Route exact path="/" component={ ModifyPwd } />
+                <Route path="/modifypwd" component={ ModifyPwd } />
+                <Route path="*" component={ NotFound } />
+            </Switch>
+        </App>
+    </Router>
+);
+
+export default Routes;

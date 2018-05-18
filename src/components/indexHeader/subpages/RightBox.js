@@ -52,13 +52,16 @@ class RightBox extends Component {
                         </li>
                     </ul>
                 </div>
-                <Dropdown overlay={ this.props.menu }>
-                    <a className="ant-dropdown-link" href="#">
+                <Dropdown 
+                    overlay={ this.props.menu }
+                    trigger={['click']}
+                >
+                    <span>
                         { 
                             this.props.getSubStringSum(this.props.getNames, 12)
                         }
                         <Icon type="down" />
-                    </a>
+                    </span>
                 </Dropdown>
             </div>
         );
