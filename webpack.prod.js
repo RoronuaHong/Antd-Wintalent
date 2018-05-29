@@ -52,7 +52,18 @@ const config = {
     plugins: [
         new CleanWebpackPlugin(['dist']),
         new UglifyJSPlugin({
-            sourceMap: true
+            uglifyOptions: {
+                compress: true,
+                ecma: 6,
+                mangle: true
+            }
+        }),
+        new CompressionPlugin({
+            asset: "[path].gz[query]",
+            algorithm: "gzip",
+            test: /\.js$|\.css$|\.html$/,
+            threshold: 10240,
+            minRadio: 0.8
         }),
         extractSass,
         new CopyWebpackPlugin([
@@ -60,7 +71,10 @@ const config = {
                 from: './public/favicon.ico',
                 to: './favicon.ico'
             }
-        ])
+        ]),
+        new webpack.optimize.OccurrenceOrderPlugin(),       //分配ID, 优先考虑使用最多的模块
+        new webpack.optimize.DedupePlugin(),                //删除类似的重复代码
+        new webpack.optimize.AggressiveMergingPlugin(),     //合并块
     ]
 }
 

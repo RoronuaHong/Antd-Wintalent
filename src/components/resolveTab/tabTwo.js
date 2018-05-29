@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { withRouter } from "react-router-dom";
 import ApplyEdit from "../applyEdit";
 import { withRouter } from "react-router-dom";
 import {Icon,Table , Pagination , Popover , Modal ,Button ,Input ,Spin,message} from 'antd';
@@ -65,12 +64,12 @@ class TabTwo extends Component {
 			  	let show = "inline" , showText = "none"
 			  	let chargeFinish = record.finish.split("-");
 			  	let data = JSON.stringify(record);
-			  	if(text==""){
+			  	if(!record.canApply){
 			  		if(chargeFinish[0]==="false" || chargeFinish[1]==="false"){
 				  		return  <span>
 				  					<span className="grey_font">简历不完整,无法编辑</span>
 				  					<span className="grey_font">|</span>
-				  					<a className="finish_btn" onClick={(data)=>{this.openLink(data)}}><Icon type="file-text" /><span>立即完善</span></a>
+				  					<a className="finish_btn"><Icon type="file-text" /><span className={index} onClick={this.openLink}>立即完善</span></a>
 				  				</span>
 				  	}
 			  	}
@@ -93,12 +92,16 @@ class TabTwo extends Component {
         	keyWord:"",
         	loading:false
         }
+        
+        this.openLink = this.openLink.bind(this);
     }
-	openLink=(param)=>{
+	openLink(e){
+		e.stopPropagation();
 		const path = {
             pathname: "/completeresume"
         }
-		console.log(param);
+		let list = this.state.resumeList[e.target.className];
+		let param = JSON.stringify(list)
 		localStorage.setItem('record', param);
         this.props.history.push(path);
 	}

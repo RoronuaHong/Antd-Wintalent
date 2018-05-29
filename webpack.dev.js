@@ -46,9 +46,21 @@ const config = {
     plugins: [
         new webpack.NamedModulesPlugin(),
         new UglifyJSPlugin({
-            sourceMap: true
+            uglifyOptions: {
+                compress: true,
+                ecma: 6,
+                mangle: true
+            }
         }),
-        new webpack.HotModuleReplacementPlugin()
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.optimize.UglifyJsPlugin({
+            compress: {
+                warnings: false,
+            },
+            output: {
+                comments: false,
+            }
+        })
     ],
     watch: true,
     watchOptions: {
@@ -58,9 +70,10 @@ const config = {
     devServer: {
         port: "7712",
         openPage: "./home.html",
-        inline: true,                       //实时刷新
         hot: true,
         open: true,
+        inline: true,                       //实时刷新
+        overlay: true,                      //覆盖
         compress: true,
         historyApiFallback: {
             index: '/index.html'
