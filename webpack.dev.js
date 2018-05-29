@@ -1,5 +1,6 @@
 const path = require('path');
 const HotModuleReplacementPlugin = require('react-hot-loader');
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const webpack = require("webpack");
 const merge = require('webpack-merge');
 const baseConfig = require('./build/webpack.base');
@@ -22,21 +23,39 @@ const config = {
                 ]
             },
             {
-                test: /\.(png|jpg|jpeg|gif|ico)$/i,
+                test: /\.(png|jpg|jpeg|gif|ico|mp4|webm)$/i,
                 use: [
                     {
                         loader: 'url-loader',
                         options: {
-                            limit: 10,
+                            limit: 10000,
                             name: "img/[name].[ext]?[hash]"
                         }
                     }
                 ]
+            },
+            {
+                test: /\.gz$/,
+                enforce: "pre",
+                use: "gzip-loader"
             }
         ]
     },
     plugins: [
         new webpack.NamedModulesPlugin(),
+        new UglifyJSPlugin({
+            uglifyOptions: {
+                warning: "verbose",
+                ecma: 6,
+                beautify: false,
+                compress: false,
+                comments: false,
+                mangle: false,
+                toplevel: false,
+                keep_classnames: true,
+                keep_fnames: true
+            }
+        }),
         new webpack.HotModuleReplacementPlugin()
     ],
     watch: true,

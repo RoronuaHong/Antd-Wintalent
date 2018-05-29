@@ -14,12 +14,25 @@ import headerNotify from "../../images/icons/notify_icon.png";
 import headerChangePwd from "../../images/icons/changepwd_icon.png";
 import headerSignout from "../../images/icons/signout_icon.png";
 
-const IndexHeader = ({ getNames, handleLogout }) => {   
+const IndexHeader = ({ 
+    getNames, 
+    handleLogout, 
+    titleIndex 
+}) => {
+    /* 点击链接外链 */
+    const openOuterLink = url => {
+        window.location.href = url;
+    }   
+
     /* 下拉内容框 */
     const menu = (
         <Menu>
             <Menu.Item>
-                <a target="_blank" rel="noopener noreferrer" href="http://www.alipay.com/">
+                <a 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    onClick={() => openOuterLink("/pwdmanage.html#/modifypwd") }
+                >
                     <img className="munu-item-img" src={ headerChangePwd } alt="暂无icon"/>
                     <span className="munu-item">修改密码</span>
                 </a>
@@ -43,7 +56,10 @@ const IndexHeader = ({ getNames, handleLogout }) => {
             <ImgBox 
                 headerLogo={ headerLogo }
             />
-            <MenuComponent />
+            <MenuComponent 
+                titleIndex={ titleIndex }
+                openOuterLink={ openOuterLink }
+            />
             <RightBox 
                 getNames={ getNames }
                 headerNotify={ headerNotify }

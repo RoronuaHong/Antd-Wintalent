@@ -15,7 +15,7 @@ export const verifyIsLogin = (method, url, data, fn, error) => {
         .then(data => {
             if (data.state == 403) {
                 if(isMessage) {
-                    message.error(data.data, 1, onClose);
+                    message.error(data.data, 2, onClose);
                     isMessage = false;
                 }
             }

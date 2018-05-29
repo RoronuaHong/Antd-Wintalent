@@ -18,9 +18,15 @@ class TabTwo extends Component {
 			  dataIndex: 'userName',
 			  render: (text, record, index) => {
 			  	let str = record.canApply?"该简历已经完整适合投递！":"该简历不完整无法投递！";
-			  	return <div>
-			  			<span>{text}</span><div className="block_canApply">{str}</div>
-			  		   </div>;
+			  	let hasApply = record.hasApply?"已推荐":"未推荐";
+			  	let hasApplyClass = record.hasApply?"has":"hasnot";
+			  	return (
+			  		<div>
+			  			<span style={{verticalAlign: "middle"}}>{text}</span>
+			  			<div className={`block_hasApply ${hasApplyClass}`}>{hasApply}</div>
+			  			<div className="block_canApply">{str}</div>
+			  		</div>
+			  	)		
 			  },
 			}, {
 			  title: '上传时间',
@@ -229,7 +235,8 @@ class TabTwo extends Component {
             		finishPercentCh:rowData[i].finishPercentCh,
             		finishPercentEn:rowData[i].finishPercentEn,
             		canApply:rowData[i].canApply,
-            		canUpdate:rowData[i].canUpdate
+            		canUpdate:rowData[i].canUpdate,
+            		hasApply:rowData[i].hasApply
             	}
             	resumeArr.push(dom);
             }
@@ -245,7 +252,7 @@ class TabTwo extends Component {
 	}
 	
 	tableEmpty=()=>{
-		let emptyHtml = `<img src=""/><br/>
+		let emptyHtml = `<div class="logo-empty"></div><br/>
 						 <p class="empty_text"><span>暂无简历,去“<a class="font_link">推荐新简历</a>”开始推荐吧!</span></p>
 						`
 		document.getElementsByClassName("ant-table-placeholder")[0].innerHTML = emptyHtml; 

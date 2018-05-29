@@ -15,7 +15,7 @@ import {
 } from "../../fetch/home";
 
 import "../../styles/reset";
-import "../../styles/home";
+import "../../styles/pwdmanage";
 
 class App extends Component {
     state = {
@@ -57,6 +57,7 @@ class App extends Component {
                 <IndexHeader 
                     getNames={ this.state.getNames }
                     handleLogout={ this.handleLogout }
+                    
                 />
                 { this.props.children }
             </div>

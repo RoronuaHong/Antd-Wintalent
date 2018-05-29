@@ -50,3 +50,9 @@ textarea{overflow:auto;resize:vertical}
 * {
     box-sizing: border-box;
 }
+.ant-spin-dot {
+    color: #18BAE2;
+}
+.ant-spin-text {
+    color: #18BAE2;
+}

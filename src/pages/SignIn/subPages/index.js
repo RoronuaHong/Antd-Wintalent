@@ -6,8 +6,11 @@ import {
     getLogin
 } from "../../../fetch/signin";
 
+import ScanImg from "../../../images/icons/scan_icon";
+
 class Index extends Component {
     state = {
+        changeLoginMode: true,
         currentBgIndex: 0,
         isRemind: false,
         isRemindAccount: "isnotremind",
@@ -51,8 +54,12 @@ class Index extends Component {
             });
     }
 
-    //是否记住账号
-
+    //切换登录方式
+    handleLoginMode = () => {
+        this.setState(prevState => ({
+            changeLoginMode: !prevState.changeLoginMode
+        }));
+    }
 
     render() {
         const currentBg = "signin-box " + this.state.bgArr[this.state.currentBgIndex];
@@ -63,45 +70,87 @@ class Index extends Component {
                 <div className={ currentBg }>
                     <div className="inner-box">
                         <h1>大易猎头系统</h1>
-                        <WrappedNormalLoginForm 
-                            userClass="username"
-                            pwdClass="password"
-                            userPlaceHolder="请输入账号"
-                            pwdPlaceHolder="请输入账号密码"
-                            handleSignIn={ this.handleSignIn }
-                        />
-                        {/* <label htmlFor="">
-                            <input 
-                                ref="userInput"
-                                className="username"
-                                type="text"
-                                placeholder="请输入账号"
+                        <div
+                            style={{
+                                display: this.state.changeLoginMode ? "block" : "none"
+                            }}
+                        >
+                            <WrappedNormalLoginForm 
+                                userClass="username"
+                                pwdClass="password"
+                                userPlaceHolder="请输入账号"
+                                pwdPlaceHolder="请输入账号密码"
+                                handleSignIn={ this.handleSignIn }
                             />
-                        </label>
-                        <label htmlFor="">
-                            <input
-                                ref="pwdInput"
-                                className="password"
-                                type="text"
-                                placeholder="请输入账号密码"
-                            />
-                            <a className="forgetpwd">忘记密码？</a>
-                        </label>
-                        <div className="btn-box clearfix">
-                            <div 
-                                className={ currentRemind }
-                                onClick={ () => this.handleRemind(this.state.isRemind) }
-                            >
-                                记住账号
+                            {/* <label htmlFor="">
+                                <input 
+                                    ref="userInput"
+                                    className="username"
+                                    type="text"
+                                    placeholder="请输入账号"
+                                />
+                            </label>
+                            <label htmlFor="">
+                                <input
+                                    ref="pwdInput"
+                                    className="password"
+                                    type="text"
+                                    placeholder="请输入账号密码"
+                                />
+                                <a className="forgetpwd">忘记密码？</a>
+                            </label>
+                            <div className="btn-box clearfix">
+                                <div 
+                                    className={ currentRemind }
+                                    onClick={ () => this.handleRemind(this.state.isRemind) }
+                                >
+                                    记住账号
+                                </div>
+                                <button
+                                    onClick={ this.handleSignIn }
+                                >
+                                    登&nbsp;&nbsp;&nbsp;&nbsp;录
+                                </button>
+                            </div> */}
+                        </div>
+                        <div 
+                            className="qrcode-box clearfix"
+                            style={{
+                                display: !this.state.changeLoginMode ? "block" : "none"
+                            }}
+                        >
+                            <div className="qrcode">
+                                <img src="" alt=""/>
                             </div>
-                            <button
-                                onClick={ this.handleSignIn }
-                            >
-                                登&nbsp;&nbsp;&nbsp;&nbsp;录
-                            </button>
-                        </div> */}
+                            <div className="right-box">
+                                <img src={ ScanImg } alt=""/>
+                                <span>
+                                    请使用微信 <br/>
+                                    扫描二维码登录
+                                </span>
+                            </div>
+                        </div>
                     </div>
-                    <span className="scavenge"></span>
+                    <div
+                        onClick={ this.handleLoginMode }
+                    >
+                        <span 
+                            className="scavenge"
+                            style={{
+                                display: this.state.changeLoginMode ? "block" : "none"
+                            }}
+                        >
+                            扫一扫
+                        </span>
+                        <span 
+                            className="account"
+                            style={{
+                                display: !this.state.changeLoginMode ? "block" : "none"
+                            }}
+                        >
+                            账号
+                        </span>
+                    </div>
                 </div>
             </div>
         )

@@ -44,30 +44,12 @@ class App extends Component {
             });
     }
 
-    componentWillMount() {
-        // /* 首页登陆 */
-        // const loginResult = getLogin({
-        //     "userName": "xfl_4",
-        //     "password": "1"
-        // });
-
-        // loginResult
-        //     .then(res => res.json())
-        //     .then(data => {
-        //         if (data.state == 200) {
-        //             this.setState({
-        //                 isShow: true
-        //             });
-        //         }
-        //         if (data.state == 500) {
-        //             window.location.href = "/signin.html";
-        //         }
-        //     });
+    /* 打开外链 */
+    openOuterLink = url => {
+        window.location.href = url;
     }
 
     componentDidMount() {
-        this.changeJumperPage();
-
         /* 获取用户信息 */
         const getNameResult = getName({}, data => {
             this.setState({
@@ -77,6 +59,10 @@ class App extends Component {
         });
     }
 
+    componentDidUpdate() {
+        this.changeJumperPage();
+    }
+
     render() {
         return (
             <div className="wrap">
@@ -84,6 +70,7 @@ class App extends Component {
                 <IndexHeader 
                     getNames={ this.state.getNames }
                     handleLogout={ this.handleLogout }
+                    titleIndex={ "1" }
                 />
                 { this.props.children }
             </div>

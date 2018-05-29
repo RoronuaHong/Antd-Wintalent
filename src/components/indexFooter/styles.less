@@ -2,12 +2,18 @@
     width: 100%;
     .inner-box {
         position: relative;
-        width: 1366px;
+        width: 100%;
         margin: 0 auto;
-        padding: 35px 365px;
-        height: 118px;
+        padding: 35px 0;
+        // height: 118px;
         background: #f9f9f9;
         border-top: 1px solid #e5e5e5;
+        .ant-pagination-options-quick-jumper {
+            input {
+                background: #f9f9f9;
+                border: 1px solid #e5e5e5;
+            }
+        }
         .ant-pagination  {
             text-align: center;
         }
@@ -26,8 +32,8 @@
     }
     .certainJump {
         position: absolute;
-        top: 32%;
-        right: 38%;
+        top: 37px;
+        right: 380px;
         width: 66px;
         height: 28px;
         line-height: 28px;
@@ -35,5 +41,14 @@
         border: 1px solid #e5e5e5;
         color: #7c7c7c;
         cursor: pointer;
+    }
+    .ant-pagination-item-link {
+        border: none;
+    }
+    .ant-pagination-prev .ant-pagination-item-link, .ant-pagination-next .ant-pagination-item-link {
+        background: transparent;
+    }
+    .ant-pagination-item {
+        background: transparent;
     }
 }

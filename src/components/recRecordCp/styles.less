@@ -1,9 +1,12 @@
 @main-color:#18BAE2;
 @high-light:#2DBEE4;
 @family-font: "Microsoft YaHei";
-
 .rec-record-box {
+    width: 1200px;
+    margin: 31px auto;
+    background: #fff;
     font-family: @family-font;
+    border: 1px solid #e5e5e5;
     .ant-tabs-bar {
         height: 69px;
     }
@@ -19,6 +22,7 @@
     .ant-tabs-ink-bar {
         height: 4px;
         background: @main-color;
+        z-index: 0;
     }
     .ant-tabs-tab-active {
         color: #000000;
@@ -67,6 +71,7 @@
         .yearsel {
             width: 65px;
             height: 24px;
+            margin-top: 6px;
             line-height: 24px;
             background: @main-color;
             border-top-right-radius: 3px;
@@ -75,6 +80,9 @@
             color: #fff;
         }
         dd {
+            overflow: hidden;
+            max-height: 0;
+            transition: max-height 0.25s linear;
             span {
                 position: relative;
                 display: block;
@@ -118,7 +126,7 @@
     .detail-box {
         width: 978px;
         height: 138px;
-        margin-bottom: 12px;
+        margin: 0 0 12px 10px;
         background: #f9f9f9;
         border: 1px solid #f2f2f2;
         .showMessage {
@@ -169,6 +177,10 @@
                     vertical-align: middle;
                     font-size: 18px;
                     color: #000000;
+                    cursor: pointer;
+                    &:hover {
+                        color: @main-color;
+                    }
                 }
                 .source {
                     margin-right: 50px;
@@ -215,7 +227,7 @@
                 margin: 0 0 0 46px;
             }
             .ant-steps-item-finish > .ant-steps-item-tail:after {
-                background: @main-color !important;
+                background: #c4edf7 !important;
             }
         }
         .ant-steps-dot .ant-steps-item-icon {
@@ -276,5 +288,84 @@
     }
     .title-box {
         padding-bottom: 20px;
+    }
+    .failmessage-box {
+        width: 100%;
+        .fail-li {
+            width: 100%;
+            height: 110px;
+            margin: 0 0 12px 10px;
+            padding: 14px 25px;
+            background: #f9f9f9;
+            border: 1px solid #f2f2f2;
+            .leftfail-box {
+                float: left;
+                width: 180px;
+                height: 76px;
+                border-right: 1px solid #e0e0e0;
+                .fail-name {
+                    width: 100%;
+                    padding-bottom: 20px;
+                    line-height: 18px;
+                    font-size: 18px;
+                    color: #000000;
+                }
+                .portrait-detail {
+                    width: 100%;
+                    padding-bottom: 10px;
+                    line-height: 14px;
+                    font-size: 14px;
+                    color: #a4a3a3;
+                }
+                .portrait-detail:last-child {
+                    padding-bottom: 0;
+                }
+            }
+            .rightfail-box {
+                float: right;
+                width: 745px;
+                padding-left: 26px;
+            }
+            .big-title {
+                width: 100%;
+                padding-bottom: 16px;
+                line-height: 18px;
+                font-size: 18px;
+                color: #000000;
+                span {
+                    float: right;
+                    font-size: 14px;
+                    color: @main-color;
+                }
+            }
+            .big-detail {
+                width: 100%;
+            }
+            .evaluate {
+                float: left;
+                width: 20px;
+                height: 20px;
+                margin: 5px 12px 20px 0;
+                line-height: 20px;
+                text-align: center;
+                border: 1px solid @main-color;
+                color: @main-color;
+            }
+            .mes {
+                width: 100%;
+                line-height: 24px;
+                font-size: 14px;
+                color: #a4a3a3;
+            }
+        }
+    }
+    .ant-timeline.ant-timeline-pending .ant-timeline-item-last .ant-timeline-item-tail {
+        border-left: 2px solid #e8e8e8;
+    }
+    .ant-timeline-item-head-custom {
+        display: none;
+    }
+    .anticon-spin:before {
+        display: none;
     }
 }

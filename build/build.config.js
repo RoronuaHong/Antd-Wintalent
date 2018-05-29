@@ -8,7 +8,9 @@ const config = {
         home: "./src/pages/Home/index.js",
         signin: "./src/pages/SignIn/index.js",
         other: "./src/pages/Other/index.js",
-        pwdmanage: "./src/pages/PasswordManage/index.js"
+        pwdmanage: "./src/pages/PasswordManage/index.js",
+        recrecord: "./src/pages/RecRecord/index.js",
+        candidate: "./src/pages/Candidate/index.js"
     },
     plugins: [
         new HtmlWebpackPlugin({
@@ -46,6 +48,24 @@ const config = {
             PUBLIC_URL: PUBLIC_URL,
             hash: true,
             title: "用户管理"
+        }),
+        new HtmlWebpackPlugin({
+            template: template,
+            filename: 'recrecord.html',
+            hash: true,
+            chunks: ["vendor", "recrecord"],
+            PUBLIC_URL: PUBLIC_URL,
+            hash: true,
+            title: "推荐记录"
+        }),
+        new HtmlWebpackPlugin({
+            template: template,
+            filename: 'candidate.html',
+            hash: true,
+            chunks: ["vendor", "candidate"],
+            PUBLIC_URL: PUBLIC_URL,
+            hash: true,
+            title: "候选人"
         })
     ]
 }

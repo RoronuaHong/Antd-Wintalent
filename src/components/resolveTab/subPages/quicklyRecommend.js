@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-import {Icon , Modal ,Button ,Input ,message,Select,Form, Row, Col,Radio, Upload } from 'antd';
+import {Icon , Modal ,Button ,Input ,message,Select,Form, Row, Col,Radio, Upload,Divider,notification   } from 'antd';
+import FileUpload from "../../upload/fileUpload";
+import {upload} from "../../../fetch/home/resolve";
 
 import "../styles";
 
@@ -9,7 +11,25 @@ class QuicklyRecommend extends Component {
         
         this.state = {
         	showOne:"block",
-        	showTwo:"none"
+        	showTwo:"none",
+        	resolveReportVisible:false,
+        	fileList: [{
+		      uid: -1,
+		      name: 'xxx.png',
+		      status: 'done',
+		      url: 'http://www.baidu.com/xxx.png',
+		    }],
+		    fileName:"",
+		    resumeForm:{
+		    	userName:"",
+		    	gender:1,
+		    	mobilePhone:"",
+		    	email:"",
+		    	college:"",
+		    	idNo:"",
+		    	resumeTempIds:"",
+		    	applyLetter:""
+		    }
         }
         
 	}
@@ -28,13 +48,33 @@ class QuicklyRecommend extends Component {
 	  }
 	  
 	}
+	handleChangeInput=(param,value)=>{
+		const _this = this;
+		let data = this.state.resumeForm;
+		data[param] = value;
+		this.setState({
+			resumeForm:data
+		});
+	}
+	chargeForm=()=>{
+		let data = this.state.resumeForm;
+		if(data.userName.trim().length === 0){
+			return false;
+		}else if(data.gender.length === 0){
+			return false;
+		}else if(data.mobilePhone.trim().length === 0){
+			return false;
+		}else if(data.email.trim().length === 0){
+			return false;
+		}else{
+			return true;
+		}
+	}
 	handleSubmit = (e) => {
-		e.preventDefault();
-		this.props.form.validateFields((err, values) => {
-	      if (!err) {
-	        console.log('Received values of form: ', values);
-	      }
-	    });
+		let flag = this.chargeForm();
+		if(flag){
+			document.getElementById("btnSubmit").click();
+		}
 	}
 	normFile = (e) => {
 	    console.log('Upload event:', e);
@@ -42,7 +82,46 @@ class QuicklyRecommend extends Component {
 	      return e;
 	    }
 	    return e && e.fileList;
-	  }
+	}
+	
+	resolveReportHandleOk = ()=>{
+		this.setState({resolveReportVisible:false});
+	}
+	resolveReportHandleCancel = ()=>{
+		this.setState({resolveReportVisible:false});
+	}
+	chooseFile=()=>{
+		document.getElementById("file1").click();
+	}
+	addOneFile=(e)=>{
+		let types = ["html","htm","pdf","doc","docx","txt","xls","xlsx","mht"];
+		let f=e.currentTarget.files[0];
+		let arr = this.state.fileList;
+		this.setState({
+			fileName:f.name
+		})
+	}
+	submitFunc=(e)=>{
+		e.preventDefault();
+		var input = document.querySelector('#file1');
+		var data = new FormData();
+		data.append('file1', input.files[0]);
+		const result = upload(data);
+      	result.then(response => response.json())
+		.then(data => {
+			if(data.state === 200){
+				notification.success({
+				    message: data.data
+				});
+			}else{
+				this.setState({resolveReportVisible:true});			
+			}
+		});
+	}
+	
+	sendResume(arr){
+		this.props.resolveResume(arr);
+	}
 	
 	render() {
 		const { getFieldDecorator, getFieldsError, getFieldError, isFieldTouched } = this.props.form;
@@ -55,117 +134,79 @@ class QuicklyRecommend extends Component {
 				    </Select>
 				</div>
 				<div className="block_body" style={{display:this.state.showOne,width:"1110px",margin:"0 auto"}}>
-					<Form layout="inline" onSubmit={this.handleSubmit}>
-						<Row>
-					      <Col span={12}>
-					      	<Form.Item label="姓名">
-					          {getFieldDecorator('userName', {
-					            rules: [{
-					              required: true,
-					              message: '姓名不能为空',
-					            }],
-					          })(
-					            <Input placeholder="请输入姓名" />
-					          )}
-					        </Form.Item>
-					      </Col>
-					      <Col span={12}>
-					      	<Form.Item label="性别">
-						      	{getFieldDecorator('gender',{
-						      		rules: [{
-						              required: true,
-						              message: '请选择性别',
-						            }],
-						      	})(
-						          <Radio.Group>
-							        <Radio value={1}>男</Radio>
-							        <Radio value={2}>女</Radio>
-							      </Radio.Group>
-						        )}
-					        </Form.Item>
-					      </Col>
-					    </Row>
-					    <Row>
-					      <Col span={12}>
-					      	<Form.Item label="移动电话">
-					          {getFieldDecorator('mobilePhone', {
-					            rules: [{
-						              required: true,
-						              message: '电话号码不能为空',
-						            }],
-					          })(
-					            <Input placeholder="请输入电话号码" />
-					          )}
-					        </Form.Item>
-					      </Col>
-					      <Col span={12}>
-					      	<Form.Item label="电子邮箱">
-						          {getFieldDecorator('email', {
-						            rules: [{
-						              type: 'email', message: '请输入正确的邮箱地址',
-						            }, {
-						              required: true, message: '电子邮箱不能为空',
-						            }],
-						          })(
-						            <Input placeholder="请输入电子邮箱" />
-						          )}
-					        </Form.Item>
-					      </Col>
-				        </Row>
-					    <Row>
-					      <Col span={12}>
-					      	<Form.Item label="毕业院校">
-					          {getFieldDecorator('school')(
-					            <Input placeholder="" />
-					          )}
-					        </Form.Item>
-					      </Col>
-					      <Col span={12}>
-					      	<Form.Item label="身份证">
-						          {getFieldDecorator('idNo')(
-						            <Input placeholder="" />
-						          )}
-					        </Form.Item>
-					      </Col>
-				        </Row>
-					    <Row>
-					    	<Col span={24}>
-					    		<Form.Item label="上传简历" extra="注：可上传格式为html、htm、pdf、doc、docx、txt、xls、xlsx、mht的文件" >
-						          {getFieldDecorator('upload', {
-						          	rules: [{
-						              required: true,
-						              message: '请上传简历',
-						            }],
-						            valuePropName: 'fileList',
-						            getValueFromEvent: this.normFile,
-						          })(
-						            <Upload name="logo" action="/upload.do" listType="text">
-						              <Button className="upload_file"> 选择文件 </Button>
-						            </Upload>
-						          )}
-						        </Form.Item>
-					    	</Col>
-					    </Row>
-					    <Row>
-					    	<Col span={24}>
-					    		<Form.Item label="推荐理由">
-						          {getFieldDecorator('applyLetter')(
-						            <textarea style={{minWidth:"1000px",height:"110px",resize:"none"}} placeholder="请输入候选人的推荐理由"></textarea>
-						          )}
-					        	</Form.Item>
-					    	</Col>
-					    </Row>
-					    <Row>
-					    	<Col span={24}>
-					    		<div className="block_btn-footer">
-					    			<Button className="form_button-cancel">取消</Button>
-					    			<Button type="primary" htmlType="submit" className="form_button-submit">立即推荐</Button>
-					    		</div>
-					    	</Col>
-					    </Row>
-			    	</Form>
+					<Row>
+					    <Col span={12}>
+					    	<div className="ant-form-item-label"><label className="ant-form-item-required" title="姓名">姓名</label></div>
+					    	<Input placeholder="请输入姓名" onChange={(e)=>{this.handleChangeInput("userName",e.target.value)}} />
+					    </Col>
+					    <Col span={12}>
+					    	<div className="ant-form-item-label"><label className="ant-form-item-required" title="性别">性别</label></div>
+					    	<Radio.Group onChange={(value)=>{this.handleChangeInput("gender",value)}} value={this.state.resumeForm.gender}>
+						        <Radio value={1}>男</Radio>
+						        <Radio value={2}>女</Radio>
+						    </Radio.Group>
+					    </Col>
+				    </Row>
+					<Row>
+					    <Col span={12}>
+					    	<div className="ant-form-item-label"><label className="ant-form-item-required" title="移动电话">移动电话</label></div>
+					    	<Input placeholder="请输入电话号码" onChange={(e)=>{this.handleChangeInput("mobilePhone",e.target.value)}} />
+					    </Col>
+					    <Col span={12}>
+					    	<div className="ant-form-item-label"><label className="ant-form-item-required" title="电子邮箱">电子邮箱</label></div>
+					    	<Input placeholder="请输入电子邮箱" onChange={(e)=>{this.handleChangeInput("email",e.target.value)}} />
+					    </Col>
+				    </Row>
+					<Row>
+					    <Col span={12}>
+					    	<div className="ant-form-item-label"><label title="毕业院校">毕业院校</label></div>
+					    	<Input placeholder="请输入毕业院校" onChange={(e)=>{this.handleChangeInput("college",e.target.value)}} />
+					    </Col>
+					    <Col span={12}>
+					    	<div className="ant-form-item-label"><label title="身份证">身份证</label></div>
+					    	<Input placeholder="请输入身份证"  onChange={(e)=>{this.handleChangeInput("idNo",e.target.value)}}/>
+					    </Col>
+				    </Row>
+				    <Row>
+				    	<Col span={24}>
+				    		<div className="ant-form-item-label"><label title="上传简历">上传简历</label></div>
+				    		<div className="block_file-frame">
+				    			<div className="btn_chooseFile" onClick={this.chooseFile}>选择文件</div>
+								<span className="choosen">已选文件：{this.state.fileName}</span><Icon type="check-circle" />
+								<span className="btn_more"><Icon type="solution" /><span>预览</span></span><Divider type="vertical" />
+								<span className="btn_more"><Icon type="delete" /><span>删除</span></span><br/><br/>
+								<p className="text-red">注：可上传格式为html、htm、pdf、doc、docx、txt、xls、xlsx、mht的文件</p>
+				    		</div>
+				    	</Col>
+				    </Row>
+				    <Row>
+				    	<Col span={24} className="last_form-textarea">
+				    		<div className="ant-form-item-label"><label title="推荐理由">推荐理由</label></div>
+				    		<textarea onChange={(e)=>{this.handleChangeInput("applyLetter",e.target.value)}} style={{minWidth:"1000px",height:"110px",resize:"none"}} placeholder="请输入候选人的推荐理由"></textarea>
+				    	</Col>
+				    </Row>
+				    <Row>
+				    	<Col span={24}>
+				    		<div className="block_btn-footer">
+				    			<Button className="form_button-cancel">取消</Button>
+				    			<Button type="primary" className="form_button-submit" onClick={this.handleSubmit}>立即推荐</Button>
+				    		</div>
+				    	</Col>
+				    </Row>
+			    	<form  id="fileForm" action="/wt/runner/hunter/auth/resume/upload" encType="multipart/form-data" method="post">
+			    		<input type="file" name="file1" id="file1" onChange={this.addOneFile} style={{display:"none"}}/>
+			    		<input type="button" id="btnSubmit" style={{display:"none"}} onClick={this.submitFunc}/>
+			    	</form>
 				</div>
-				<div className="block_body" style={{display:this.state.showTwo}}></div>
+				<div className="block_body" style={{display:this.state.showTwo,paddingTop:"20px"}}>
+					<FileUpload sendResume={(arr)=>{this.sendResume(arr)}}></FileUpload>
+				</div>
+				<Modal title="解析报告" wrapClassName="tab_dialog" width={500} visible={this.state.resolveReportVisible} onOk={this.resolveReportHandleOk} onCancel={this.resolveReportHandleCancel} okText="继续上传" cancelText="关闭" >
+		          <div className="textAlign-center" style={{height: "70px",paddingTop:"30px"}}>
+		          	<Icon type="exclamation-circle" style={{ fontSize: 18, color: '#FF9421',verticalAlign: "middle" }} />&nbsp;&nbsp;
+		          	<span style={{verticalAlign: "middle"}}>抱歉,该简历解析失败</span>
+	          	  </div>
+		        </Modal>
 			</div>
 		);
 	}

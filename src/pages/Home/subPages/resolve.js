@@ -68,7 +68,7 @@ class Resolve extends Component {
 					</Tabs>
 				</div>
 				<Modal title="推荐完成" wrapClassName="tab_dialog" width={500} visible={this.state.dialogVisible} onCancel={this.dialogCancel} footer={null} >
-		          <img src="" />
+		          <div className="logo-success"></div>
 		          <p style={{fontSize:"16px",textAlign:"center",marginBottom:"15px"}}>推荐完成 , 您可以后续在系统<a className="font_link">推荐记录</a>中查看结果</p>
 		          <p style={{fontSize:"13px",textAlign:"center"}}>系统也会推送结果消息给到您~~</p>
 		        </Modal>

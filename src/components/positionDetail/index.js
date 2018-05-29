@@ -26,13 +26,22 @@ const PositionDetail = ({ positionListArr, openLink, id, showBtn="block" }) => {
                     dangerouslySetInnerHTML={ setNewHtml(positionListArr.serviceCondition) }
                 >
                 </div>
-            </div>
-            <div 
-                className="positiondetail-recommend-resume" 
-                style={{'display':showBtn}}
-                onClick={ handleLink }
-            >
-                推荐简历
+                <div
+                    className="positiondetail-rec-box"
+                    style={{
+                        'display': showBtn
+                    }}
+                >
+                </div>
+                <div
+                    className="positiondetail-recommend-resume"
+                    onClick={ handleLink }
+                    style={{
+                        'display': showBtn
+                    }}
+                >
+                    推荐简历
+                </div>
             </div>
         </React.Fragment>
     )

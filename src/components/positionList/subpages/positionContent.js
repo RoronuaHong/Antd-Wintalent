@@ -1,14 +1,15 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import { Spin } from "antd";
 
-const positionContent = ({ isLoading, positionListArr, openLink }) => {
+const positionContent = ({ isLoading, positionListArr, openLink, states }) => {
     return (
         <div className="position-content-box">
             {
                 isLoading ?
                     <Spin 
+                        tip="Loading..."
                         size="large"
-                        className="position-list-spin"
                     />
                     :
                     <React.Fragment>
@@ -19,8 +20,13 @@ const positionContent = ({ isLoading, positionListArr, openLink }) => {
                                         className="position-content-list clearfix"
                                         key={ index }
                                     >
-                                        <div className="left-box">
-                                            <a href="">
+                                        <div 
+                                            className="left-box"
+                                            style={{
+                                                width: states.postionTabIndex == 1 && "660px"
+                                            }}
+                                        >
+                                            <Link to={ "/positiondetail/" + item.postId }>
                                                 <p className="post-name">
                                                     { item.postName || "暂无" }
                                                     <i
@@ -28,9 +34,10 @@ const positionContent = ({ isLoading, positionListArr, openLink }) => {
                                                             display: item.new ? "inline-block" : "none"
                                                         }}
                                                     >
+                                                        NEW
                                                     </i>
                                                 </p>
-                                            </a>
+                                            </Link>
                                             <div className="post-detail clearfix">
                                                 <strong className="salary">
                                                     { item.workingTreatment || "暂无" }
@@ -84,7 +91,10 @@ const positionContent = ({ isLoading, positionListArr, openLink }) => {
                                             </ul>
                                             <div 
                                                 className="recommend-resume"
-                                                onClick={ () => openLink("/positiondetail", item.postId) }
+                                                style={{
+                                                    display: states.postionTabIndex == 1 ? "none" : "block"
+                                                }}
+                                                onClick={ () => openLink("/resolve", item.postId) }
                                             >
                                                 <span>
                                                     <i>

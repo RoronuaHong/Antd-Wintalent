@@ -1,3 +1,4 @@
+import { Spin } from "antd";
 import React, { Component } from "react";
 import SelectComponent from "./subpages/selectComponent";
 import SearchSelect from "./subpages/SearchSelect";
@@ -85,12 +86,71 @@ class IndexSearch extends Component {
                             }
                         </React.Fragment>
                 )
-                })
+            })
         )
 
         return (
             <div className="index-search-box clearfix">
-                <div className="pulldown-box clearfix">
+                {
+                    searchArr.length > 0 &&
+                        <React.Fragment>
+                            <div className="pulldown-box clearfix">
+                                {
+                                    searchArr.map((item, index) => {
+                                        return (
+                                            <React.Fragment key={index}>
+                                                {
+                                                    (Object.keys(item) == 10 || Object.keys(item) == 11) ?
+                                                        ""
+                                                        :
+                                                        <SelectComponent
+                                                            states={this.props.states}
+                                                            defaultKey={Object.keys(item)}
+                                                            defaultValue={Object.values(item)}
+                                                            postListArr={this.props.postListArr}
+                                                            addSetItem={this.addSetItem}
+                                                        />
+                                                }
+                                            </React.Fragment>
+                                        )
+                                    })
+                                }
+                            </div>
+                            {SearchSelectComponent}
+                            <button
+                                className="search-btn"
+                                onClick={() =>
+                                    this.props.positionResultAjax(
+                                        this.props.states.postionTabIndex,
+                                        this.props.states.keyWord,
+                                        this.props.states.positionName,
+                                        this.props.states.workPlace,
+                                        this.props.states.positionType,
+                                        this.props.states.workType,
+                                        this.props.states.releaseTimeCode,
+                                        this.props.states.salaryType,
+                                        this.props.states.orgCode,
+                                        this.props.states.rowSize,
+                                        this.props.states.currentPage
+                                    )
+                                }
+                            >
+                                搜&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;索
+                            </button>
+                            <ScreeningEntries
+                                deleteIcon={deleteIcon}
+                                selItem={this.state.selItem}
+                                deleteSingleItem={this.deleteSingleItem}
+                                deleteAllItem={this.deleteAllItem}
+                            />
+                        </React.Fragment>
+                        // :
+                        // <Spin
+                        //     tip="Loading..."
+                        //     size="large"
+                        // />
+                }
+                {/* <div className="pulldown-box clearfix">
                     {
                         searchArr.map((item, index) => {
                             return(
@@ -133,13 +193,12 @@ class IndexSearch extends Component {
                 >
                     搜&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;索
                 </button>
-                
                 <ScreeningEntries 
                     deleteIcon={ deleteIcon }
                     selItem={ this.state.selItem }
                     deleteSingleItem={ this.deleteSingleItem }
                     deleteAllItem={ this.deleteAllItem }
-                />
+                /> */}
             </div>
         )
     }

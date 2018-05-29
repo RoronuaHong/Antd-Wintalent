@@ -33,7 +33,7 @@ class Index extends Component {
     //打开其他页面
     openLink = (url, data) => {
         const path = {
-            pathname: url + "/" + data,
+            pathname: url + "/" + data
         }
         this.props.history.push(path);
     }
@@ -110,18 +110,6 @@ class Index extends Component {
                 isLoading: false
             });
         });
-
-        // positionResult
-        //     .then(response => response.json())
-        //     .then(data => {
-        //         this.setState({
-        //             positionListArr: data.data.rowList,
-        //             totalPage: data.data.pageCount,
-        //             totalData: data.data.rowCount,
-        //             rowSize: data.data.rowSize,
-        //             isLoading: false
-        //         });
-        //     });
     }
 
     componentDidMount() {
@@ -165,46 +153,7 @@ class Index extends Component {
                     searchArr
                 });
             });
-
-            // postListResults
-            //     .then(response => response.json())
-            //     .then(data => {
-            //         this.setState({
-            //             postListArr: data.data,
-            //             searchArray: searchTypeArrs,
-            //             searchArr
-            //         });
-            //     });
         });
-
-        // searchResult
-        //     .then(response => response.json())
-        //     .then(data => {
-        //         const searchArr = [];
-
-        //         //处理成JSON数据
-        //         data.data.showSearch.map(item => {
-        //             searchArr.push({
-        //                 [item]: searchArrs[item]
-        //             });
-        //         });
-                
-        //         /* 职位搜索组件显示数据接口 */
-        //         const postListResults = getPostList({
-        //             "searchCondition.id": data.data.searchId,
-        //             "searchCondition.showSearch": JSON.parse(JSON.stringify(data.data.showSearch))
-        //         });
-
-        //         postListResults
-        //             .then(response => response.json())
-        //             .then(data => {
-        //                 this.setState({
-        //                     postListArr: data.data,
-        //                     searchArray: searchTypeArrs,
-        //                     searchArr
-        //                 });
-        //             });
-        //     });
         
         //职位列表接口
         this.positionResultAjax(
@@ -244,7 +193,9 @@ class Index extends Component {
                     states={ this.state }
                 />
                 <IndexFooter 
+                    positionListArr={ this.state.positionListArr }
                     positionResultAjax={ this.positionResultAjax }
+                    isLoading={ this.state.isLoading }
                     states={ this.state }
                 />
             </div>

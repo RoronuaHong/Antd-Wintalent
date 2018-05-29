@@ -36,3 +36,17 @@ export const post = (url, paramObj) => {
 
     return result;
 }
+
+export const filePost = (url, paramObj)=>{
+	const result = fetch(url, {
+        method: "POST",
+        credentials: "include",
+        headers: {
+            "Accept": "application/json, text/plain, */*",
+            "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: paramObj
+    });
+
+    return result;
+}

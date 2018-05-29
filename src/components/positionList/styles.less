@@ -1,7 +1,10 @@
+@main-color:#18BAE2;
+@high-light:#2DBEE4;
 .position-list-box {
     position: relative;
     width: 1366px;
     margin: 0 auto;
+    background: #fff;
     .list-line {
         position: absolute;
         top: 62px;
@@ -37,6 +40,7 @@
             bottom: -1px;
             height: 4px;
             background: #18bae2;
+            z-index: 0;
         }
         .ant-tabs-nav-container {
             height: 100%;
@@ -83,7 +87,7 @@
             float: left;
             width: 558px;
             .post-name {
-                overflow: hidden;
+                // overflow: hidden;
                 text-overflow: ellipsis;
                 word-break: keep-all;
                 white-space: nowrap;
@@ -93,14 +97,36 @@
                 font-family: PingFangSC-Light;
                 text-align: left;
                 color: #000000;
+                &:hover {
+                    color: @main-color;
+                }
                 i {
+                    position: relative;
                     display: inline-block;
-                    width: 45px;
-                    height: 26px;
+                    width: 37px;
+                    height: 19px;
+                    line-height: 19px;
                     margin-left: 10px;
-                    background: url("../../images/icons/new-icon.png") 0 3px no-repeat;
-                    background-size: contain;
-                    vertical-align: middle;
+                    background: #00ba99;
+                    font-size: 12px;
+                    text-align: center;
+                    font-style: normal;
+                    border-radius: 3px;
+                    vertical-align: top;
+                    color: #fff;
+                    // background: url("../../images/icons/new-icon.png") 0 3px no-repeat;
+                    // background-size: contain;
+                    // vertical-align: middle;
+                }
+                i::after {
+                    position: absolute;
+                    bottom: -5px;
+                    left: 0;
+                    content: "";
+                    width: 5px;
+                    height: 4px;
+                    border: 5px solid transparent;
+                    border-left-color: #00ba99;
                 }
             }
             .post-detail {
@@ -179,6 +205,7 @@
         }
         .bussiness-card {
             float: left;
+            margin-top: 10px;
             padding-left: 18px;
             display: inline-block;
             vertical-align: middle;
@@ -189,20 +216,19 @@
                 span:first-child {
                     padding-right: 10px;
                     font-family: PingFangSC-Light;
-                    font-weight: bold;
                     font-size: 16px;
                     color: #323232;
                 }
                 span:last-child {
                     font-size: 12px;
                     font-family: PingFangSC-Light;
-                    font-weight: bold;
                     color: #18bae2;
                 }
             }
             .tel, .mail {
-                margin: 13px 0 11px;
+                margin: 10px 0;
                 padding-left: 18px;
+                line-height: 12px;
                 font-family: PingFangSC-Light;
                 font-size: 12px;
                 text-align: left;

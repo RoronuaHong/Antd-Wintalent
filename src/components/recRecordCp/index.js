@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Tabs } from 'antd';
 import Recdetail from "./subPages/recdetail";
+import Failrecdetail from "./subPages/failrecdetail";
 
 import "./styles";
 
@@ -8,6 +9,8 @@ const { TabPane } = Tabs;
 
 class RecRecordCp extends Component {
     state = {
+        chooseMonth: "",
+        chooseYear: "", 
         timestamp: [
             {
                 year: 2013,
@@ -30,8 +33,30 @@ class RecRecordCp extends Component {
                 isChoose: false
             }
         ],
+        failtimestamp: [
+            {
+                year: 2013,
+                month: [
+                    "12月",
+                    "11月",
+                    "10月",
+                    "9月"
+                ],
+                isChoose: false
+            },
+            {
+                year: 2012,
+                month: [
+                    "12月",
+                    "11月",
+                    "10月",
+                    "9月"
+                ],
+                isChoose: false
+            }
+        ],
         process: {
-            currentProcess: 8,
+            currentProcess: 4,
             steps: [
                 {
                     title: ''
@@ -79,21 +104,21 @@ class RecRecordCp extends Component {
         }
     }
 
-    showMonth = (item, index) => {
-        const isChoose = item.isChoose;
-
+    /* 选择月份 */
+    changeMonth = indexs => {
         this.setState({
-            timestamp: [
-                ...this.state.timestamp.slice(0, index),
-                {
-                    ...item,
-                    isChoose: true
-                },
-                ...this.state.timestamp.slice(index + 1)
-            ]
+            chooseMonth: indexs
         });
+    }
 
-        console.log(this.state.timestamp);
+    /* 显示月份 */
+    showMonth = index => {
+        if(this.state.chooseYear !== index) {
+            this.setState({
+                chooseYear: index,
+                chooseMonth: ""
+            });
+        }
     }
 
     render() {
@@ -109,10 +134,13 @@ class RecRecordCp extends Component {
                         forceRender={ false }
                     >
                         <Recdetail 
+                            changeMonth={ this.changeMonth }
                             timestamp={ this.state.timestamp }
                             showMonth={ this.showMonth }
                             stepsArr={ this.state.process.steps }
                             process={ this.state.process.currentProcess }
+                            chooseMonth={ this.state.chooseMonth }
+                            chooseYear={ this.state.chooseYear }
                         />
                     </TabPane>
                     <TabPane
@@ -120,7 +148,12 @@ class RecRecordCp extends Component {
                         key="1"
                         forceRender={ false }
                     >
-                        2
+                        <Failrecdetail 
+                            timestamp={ this.state.failtimestamp }
+                            showMonth={ this.showMonth }
+                            stepsArr={ this.state.process.steps }
+                            process={ this.state.process.currentProcess }
+                        />
                     </TabPane>
                 </Tabs>
             </div>

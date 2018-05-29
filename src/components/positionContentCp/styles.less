@@ -24,18 +24,25 @@
                 text-align: left;
                 color: #000000;
                 i {
+                    position: relative;
                     display: inline-block;
-                    width: 45px;
-                    height: 26px;
-                    background: url("../../images/icons/new-icon.png") 0 0 no-repeat;
-                    background-size: contain;
-                    vertical-align: middle;
+                    width: 37px;
+                    height: 19px;
+                    line-height: 19px;
+                    margin-left: 10px;
+                    background: #00ba99;
+                    font-size: 12px;
+                    text-align: center;
+                    font-style: normal;
+                    border-radius: 3px;
+                    vertical-align: top;
+                    color: #fff;
                 }
             }
             .post-detail {
                 width: 100%;
                 line-height: 18px;
-                padding: 7px 0 16px;
+                padding: 15px 0 16px;
                 font-size: 18px;
                 text-align: left;
             }
@@ -108,7 +115,9 @@
             padding-left: 19px;
         }
         .bussiness-card {
+            overflow: hidden;
             float: left;
+            margin-top: 10px;
             padding-left: 18px;
             display: inline-block;
             vertical-align: middle;
@@ -119,19 +128,22 @@
                 span:first-child {
                     padding-right: 10px;
                     font-family: PingFangSC-Light;
+                    line-height: 16px;
                     font-size: 16px;
                     color: #323232;
                 }
                 span:last-child {
+                    line-height: 12px;
                     font-size: 12px;
                     font-family: PingFangSC-Light;
                     color: #18bae2;
                 }
             }
             .tel, .mail {
-                margin: 13px 0 11px;
+                margin: 10px 0;
                 padding-left: 18px;
                 font-family: PingFangSC-Light;
+                line-height: 12px;
                 font-size: 12px;
                 text-align: left;
                 background: url(../../images/icons/tel_icon.png) 0 center no-repeat;
@@ -168,8 +180,5 @@
                 font-style: normal;
             }
         }
-    }
-    .position-list-spin {
-        line-height: 400px;
     }
 }

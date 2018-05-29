@@ -4,7 +4,8 @@ import {Icon,Table , Pagination , Popover , Modal ,Button ,Input ,Spin ,message}
 import {
     getResumeList,
     editApplyLetter,
-    positionDetail
+    positionDetail,
+    analyze
 } from "../../../fetch/home/resolve";
 
 import "../styles";
@@ -247,6 +248,16 @@ class AfterResolved extends Component {
 		document.getElementsByClassName("ant-table-placeholder")[0].innerHTML = emptyHtml; 
 	}
 	
+	getResolved=(id,type)=>{
+		const result = getResumeList({resumeTempIds:id,postType:type});
+		result.then(response => response.json())
+        .then(data => {
+        	if(data.state === 200){
+        		return data.data;
+        	}
+        });
+	}
+	
 	subApply(resumeId,text){
 		const result = editApplyLetter({
 			"letterCondition.postId":this.props.postId,
@@ -258,7 +269,7 @@ class AfterResolved extends Component {
         .then(data => {
         	if(data.state === 200){
         		message.success(data.data, 10);
-        		this.resumeList(this.state.currentPage,this.state.keyword);
+//      		this.resumeList(this.state.currentPage,this.state.keyword);
         	}else{
         		message.error('编辑失败',10);
         	}
@@ -267,7 +278,16 @@ class AfterResolved extends Component {
 	}
 	componentDidMount(){
 		this.tableEmpty();
-		this.resumeList(1,"");
+//		this.resumeList(1,"");
+		const _this = this;
+		let arr = this.props.dataArr;
+		let data = [];
+		for(let i = 0;i<arr.length;i++){
+			data.push(_this.getResolved(arr[i]),"");
+		}
+		this.setState({
+			resumeList:data
+		});
 	}
 	
 	render() {
@@ -284,7 +304,7 @@ class AfterResolved extends Component {
 		          <ul className="unfinish_name">
 		          {
 		          	this.state.cnUnfinish.map(function(item){
-		          		return <li>{item.userName}</li>
+		          		return <li key={item.resumeId}>{item.userName}</li>
 		          	})
 		          }
 		          </ul>

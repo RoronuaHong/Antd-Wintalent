@@ -7,7 +7,8 @@ import Others from "./subPages/others";
 import PositionDetail from "./subPages/positiondetail";
 import Recresume from "./subPages/recresume";
 import Resolve from "./subPages/resolve";
-import Recommenndrecord from "./subPages/recommenndrecord";
+import CompleteResume from "./subPages/completeresume";
+import CandidateResDel from "./subPages/candidateresdel";
 import NotFound from "../NotFound";
 
 const Routes = () => (
@@ -20,7 +21,8 @@ const Routes = () => (
                 <Route path="/positiondetail/:id" component={ PositionDetail } />
                 <Route path="/resolve" component={ Resolve } />
                 <Route path="/recresume/:id" component={ Recresume } />
-                <Route path="/recommenndrecord" component={ Recommenndrecord }/>
+                <Route path="/candidateresdel/:id" component={ CandidateResDel } />
+                <Route path="/completeresume" component={CompleteResume} />
                 <Route path="*" component={ NotFound } />
             </Switch>
         </App>

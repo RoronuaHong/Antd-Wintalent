@@ -4,7 +4,7 @@ import { Form, Icon, Input, Button, Checkbox } from 'antd';
 
 const FormItem = Form.Item;
 
-class NormalLoginForm extends React.Component {
+class NormalLoginForm extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
@@ -15,6 +15,11 @@ class NormalLoginForm extends React.Component {
             }
             
         });
+    }
+
+    //打开外链
+    openOuterLink = url => {
+        window.location.href = url;
     }
 
     render() {
@@ -33,6 +38,7 @@ class NormalLoginForm extends React.Component {
                         <Input 
                             className={ this.props.userClass }
                             placeholder={ this.props.userPlaceHolder } 
+                            autoComplete="off"
                         />
                     )}
                 </FormItem>
@@ -42,11 +48,17 @@ class NormalLoginForm extends React.Component {
                     })(
                         <Input 
                             type="password" 
+                            autoComplete="off"
                             className={ this.props.pwdClass }
                             placeholder={ this.props.pwdPlaceHolder } 
                         />
                     )}
-                    <a className="forgetpwd">忘记密码？</a>
+                    <a 
+                        className="forgetpwd"
+                        onClick={ () => this.openOuterLink("/pwdmanage.html#/newmodifypwd") }
+                    >
+                        忘记密码？
+                    </a>
                 </FormItem>
                 <FormItem>
                     {getFieldDecorator('remember', {

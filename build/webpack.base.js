@@ -42,6 +42,18 @@ const config = {
                         options: {
                             name: 'css/[name].[ext]'
                         }
+                    },
+                    {
+                        loader: 'image-webpack-loader',
+                        options: {
+                            progressive: true,
+                            optimizationLevel: 7,
+                            interlaced: false,
+                            pngquant: {
+                                quality: '65-90',
+                                speed: 4,
+                            },
+                        }
                     }
                 ]
             }

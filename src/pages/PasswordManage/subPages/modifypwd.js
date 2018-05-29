@@ -106,6 +106,10 @@ class ModifyPwd extends Component {
         });
     }
 
+    componentDidMount() {
+        document.title = "修改密码";
+    }
+
     render() {
         return (
             <div className="modify-password-wrap">

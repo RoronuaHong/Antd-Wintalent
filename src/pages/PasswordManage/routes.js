@@ -5,6 +5,7 @@ import App from "./App";
 import Index from "./subPages/index";
 import NotFound from "../NotFound";
 import ModifyPwd from "./subPages/modifypwd";
+import NewModifyPwd from "./subPages/newmodifypwd";
 
 const Routes = () => (
     <Router>
@@ -12,6 +13,7 @@ const Routes = () => (
             <Switch>
                 <Route exact path="/" component={ ModifyPwd } />
                 <Route path="/modifypwd" component={ ModifyPwd } />
+                <Route path="/newmodifypwd" component={ NewModifyPwd } />
                 <Route path="*" component={ NotFound } />
             </Switch>
         </App>

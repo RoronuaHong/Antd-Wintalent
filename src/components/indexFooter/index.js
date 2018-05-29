@@ -3,7 +3,7 @@ import { Pagination } from 'antd';
 
 import "./styles";
 
-const IndexFooter = ({ states, positionResultAjax }) => {
+const IndexFooter = ({ states, positionResultAjax, isLoading, positionListArr }) => {
     const onChanges = pageNumber => {
         positionResultAjax(
             states.postionTabIndex,
@@ -22,7 +22,12 @@ const IndexFooter = ({ states, positionResultAjax }) => {
     totals = typeof states.totalData == "number" ? states.totalData : 100;
 
     return(
-        <div className="index-footer-box">
+        <div 
+            className="index-footer-box"
+            style={{
+                display: !isLoading && positionListArr.length > 0 ? "block" : "none"
+            }}
+        >
             <div className="inner-box">
                 <Pagination 
                     showQuickJumper

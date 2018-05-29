@@ -41,12 +41,21 @@ const config = {
                         }
                     }
                 ]
+            },
+            {
+                test: /\.gz$/,
+                enforce: "pre",
+                use: "gzip-loader"
             }
         ]
     },
     plugins: [
         new CleanWebpackPlugin(['dist']),
-        new UglifyJSPlugin(),
+        new UglifyJSPlugin({
+            cache: true,
+            parallel: true,
+            sourceMap: true
+        }),
         extractSass,
         new CopyWebpackPlugin([
             {

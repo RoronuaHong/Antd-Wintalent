@@ -1,0 +1,75 @@
+@main-color:#18BAE2;
+@high-light:#2DBEE4;
+@family-font: "Microsoft YaHei";
+.step-box {
+    .ant-steps {
+        margin-left: -30px;
+    }
+    .ant-steps-item-finish .ant-steps-item-icon > .ant-steps-icon .ant-steps-icon-dot {
+        background: @main-color !important;
+    }
+    .ant-steps-dot {
+        .ant-steps-item-tail {
+            width: 120%;
+            margin: 0 0 0 46px;
+        }
+        .ant-steps-item-finish > .ant-steps-item-tail:after {
+            background: #c4edf7 !important;
+        }
+    }
+    .ant-steps-dot .ant-steps-item-icon {
+        margin-left: 50px;
+    }
+    .ant-steps-item-finish .ant-steps-item-title, .ant-steps-item-process .ant-steps-item-title {
+        color: @main-color;
+    }
+    .ant-steps-item-process .ant-steps-item-icon > .ant-steps-icon .ant-steps-icon-dot {
+        top: -3px;
+        left: -4px;
+        width: 14px;
+        height: 14px;
+        background: #fff !important;
+        box-shadow: 0 0 0 2px @main-color;
+    }
+    .ant-steps-item-process .ant-steps-item-icon > .ant-steps-icon .ant-steps-icon-dot:before {
+        content: "";
+        position: absolute;
+        top: 3px;
+        left: 38px;
+        height: 4px;
+        border: 4px solid transparent;
+        background: transparent !important;
+        border-left-color: @main-color;
+    }
+    .ant-steps-item-process .ant-steps-item-icon > .ant-steps-icon .ant-steps-icon-dot:after {
+        position: absolute;
+        top: 3px;
+        left: 15px;
+        width: 23px;
+        height: 8px;
+        background: @main-color;
+    }
+    .ant-steps-label-vertical .ant-steps-item-content {
+        position: relative;
+        left: 20px;
+        width: auto;
+        text-align: center;
+    }
+    .ant-steps-item-process .ant-steps-item-icon {
+        height: 8px;
+    }
+    .ant-steps-item-content {
+        font-family: @family-font;
+        text-align: right;
+    }
+    .ant-steps-item-wait .ant-steps-item-icon > .ant-steps-icon .ant-steps-icon-dot {
+        background: #e5e5e5;
+    }
+    .ant-steps-item-description {
+        position: relative;
+        top: -65px;
+        font-size: 12px !important;
+        text-align: center;
+        color: #a4a3a3 !important;
+    }
+}

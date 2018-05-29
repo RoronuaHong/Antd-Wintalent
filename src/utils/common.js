@@ -73,3 +73,8 @@ export const getQueryString = (str) => {
     
     return args;
 }
+
+/* 自定义滚动条 */
+export const getScrollWidth = () => {
+    
+}
