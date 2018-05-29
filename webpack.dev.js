@@ -15,15 +15,17 @@ const config = {
                 use: [
                     {
                         loader: "style-loader"
-                    }, {
+                    }, 
+                    {
                         loader: "css-loader"
-                    }, {
+                    }, 
+                    {
                         loader: "less-loader"
                     }
                 ]
             },
             {
-                test: /\.(png|jpg|jpeg|gif|ico|mp4|webm)$/i,
+                test: /\.(svg|png|jpg|jpeg|gif|ico|mp4|webm)$/i,
                 use: [
                     {
                         loader: 'url-loader',
@@ -44,17 +46,7 @@ const config = {
     plugins: [
         new webpack.NamedModulesPlugin(),
         new UglifyJSPlugin({
-            uglifyOptions: {
-                warning: "verbose",
-                ecma: 6,
-                beautify: false,
-                compress: false,
-                comments: false,
-                mangle: false,
-                toplevel: false,
-                keep_classnames: true,
-                keep_fnames: true
-            }
+            sourceMap: true
         }),
         new webpack.HotModuleReplacementPlugin()
     ],
@@ -66,7 +58,7 @@ const config = {
     devServer: {
         port: "7712",
         openPage: "./home.html",
-        inline: true,   //实时刷新
+        inline: true,                       //实时刷新
         hot: true,
         open: true,
         compress: true,

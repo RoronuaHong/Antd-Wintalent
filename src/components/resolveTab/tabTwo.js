@@ -1,5 +1,7 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
 import ApplyEdit from "../applyEdit";
+import { withRouter } from "react-router-dom";
 import {Icon,Table , Pagination , Popover , Modal ,Button ,Input ,Spin,message} from 'antd';
 import {
     getResumeList,
@@ -62,12 +64,13 @@ class TabTwo extends Component {
 			  render: (text, record, index) => {
 			  	let show = "inline" , showText = "none"
 			  	let chargeFinish = record.finish.split("-");
+			  	let data = JSON.stringify(record);
 			  	if(text==""){
 			  		if(chargeFinish[0]==="false" || chargeFinish[1]==="false"){
 				  		return  <span>
 				  					<span className="grey_font">简历不完整,无法编辑</span>
 				  					<span className="grey_font">|</span>
-				  					<a className="finish_btn"><Icon type="file-text" /><span>立即完善</span></a>
+				  					<a className="finish_btn" onClick={(data)=>{this.openLink(data)}}><Icon type="file-text" /><span>立即完善</span></a>
 				  				</span>
 				  	}
 			  	}
@@ -91,6 +94,15 @@ class TabTwo extends Component {
         	loading:false
         }
     }
+	openLink=(param)=>{
+		const path = {
+            pathname: "/completeresume"
+        }
+		console.log(param);
+		localStorage.setItem('record', param);
+        this.props.history.push(path);
+	}
+	
 	paginationOpt = {
 		showQuickJumper:true,
 		defaultCurrent:1,
@@ -107,11 +119,7 @@ class TabTwo extends Component {
 		    this.setState(prevState =>({
 		    	selectedRows:selectedRows
 		    }));
-		},
-		getCheckboxProps: record => ({
-		    disabled: record.name === 'Disabled User', // Column configuration not to be checked
-		    name: record.name,
-		}),
+		}
 	}
 	changeJumperPage = () => {
 		let index = document.getElementsByClassName("ant-pagination-options-quick-jumper").length - 1;
@@ -276,8 +284,10 @@ class TabTwo extends Component {
         });
 	}
 	componentDidMount(){
+        console.log(this.props)
 		this.tableEmpty();
-		this.resumeList(1,"");
+        this.resumeList(1,"");
+        
 	}
 	
 	render() {
@@ -318,4 +328,4 @@ class TabTwo extends Component {
 	}
 }
 
-export default TabTwo;
+export default withRouter(TabTwo);

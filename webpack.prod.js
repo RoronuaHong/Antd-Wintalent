@@ -52,8 +52,6 @@ const config = {
     plugins: [
         new CleanWebpackPlugin(['dist']),
         new UglifyJSPlugin({
-            cache: true,
-            parallel: true,
             sourceMap: true
         }),
         extractSass,
@@ -64,7 +62,7 @@ const config = {
             }
         ])
     ]
-};
+}
 
 const webpackConfig = merge(baseConfig, buildConfig, config);
 

@@ -21,9 +21,11 @@ class AfterResolved extends Component {
 			  dataIndex: 'userName',
 			  render: (text, record, index) => {
 			  	let str = record.canApply?"该简历已经完整适合投递！":"该简历不完整无法投递！";
-			  	return <div>
-			  			<span>{text}</span><div className="block_canApply">{str}</div>
-			  		   </div>;
+			  	return  <div>
+				  			<span style={{verticalAlign: "middle"}}>{text}</span>
+				  			<div className={`block_hasApply ${hasApplyClass}`}>{hasApply}</div>
+				  			<div className="block_canApply">{str}</div>
+				  		</div>
 			  },
 			}, {
 			  title: '性别',

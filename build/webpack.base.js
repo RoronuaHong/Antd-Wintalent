@@ -4,7 +4,7 @@ const es3ifyPlugin = require('es3ify-webpack-plugin');
 
 const config = {
     entry: {
-        vendor: [/* "console-polyfill", "es5-shim", "es5-shim/es5-sham",  */"babel-polyfill", "media-match", "raf/polyfill", "react", "react-dom", "react-router-dom"]
+        vendor: ["console-polyfill", "babel-polyfill", "media-match", "raf/polyfill", "react", "react-dom", "react-router-dom"]
     },
     output: {
         path: path.resolve(__dirname, '../dist'),
@@ -51,8 +51,8 @@ const config = {
                             interlaced: false,
                             pngquant: {
                                 quality: '65-90',
-                                speed: 4,
-                            },
+                                speed: 4
+                            }
                         }
                     }
                 ]

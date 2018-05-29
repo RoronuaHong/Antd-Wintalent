@@ -33,8 +33,12 @@ class Resolve extends Component {
 	getPositionDetail = (postId)=>{
 		const result = positionDetail({"positionCondition.postId":postId});
 		result.then(response => response.json()).then(data => {
+			let pd = data.data;
+			if(pd.workingTreatment == null){
+				pd.workingTreatment = ""
+			}
             this.setState({
-            	positionDetail:data.data
+            	positionDetail:pd
             });
         });
 	}
@@ -50,7 +54,10 @@ class Resolve extends Component {
 	}
 	
 	componentDidMount(){
-		this.getPositionDetail(118101);
+		const u = window.location.href;
+		const len = u.split("/").length;
+		const id = u.split("/")[len-1];
+		this.getPositionDetail(id);
 	}
 	
 	render(){
@@ -63,7 +70,7 @@ class Resolve extends Component {
 					    	<TabOne postId={this.state.positionDetail.postId}></TabOne>
 					    </Tabs.TabPane>
 					    <Tabs.TabPane tab="已有简历" key="2">
-					    	<TabTwo postId={this.state.positionDetail.postId}></TabTwo>
+					    	<TabTwo postId={this.state.positionDetail.postId} openDialog={()=>{this.openDialog}}></TabTwo>
 					    </Tabs.TabPane>
 					</Tabs>
 				</div>
